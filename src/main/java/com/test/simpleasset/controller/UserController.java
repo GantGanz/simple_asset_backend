@@ -40,7 +40,7 @@ public class UserController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
-//	Comment the PreAuthorize to create super admin for the first time. Then Uncomment back when it's been created
+//	Comment the Post PreAuthorize to create super admin for the first time. Then Uncomment back when it has been created
 	@PostMapping
 	@PreAuthorize("hasAuthority('SA')")
 	public ResponseEntity<UserInsertResDto> insert(@RequestBody @Valid final UserInsertReqDto data){

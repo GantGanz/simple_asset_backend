@@ -53,7 +53,7 @@ public class UserService implements UserDetailsService {
 	@Transactional(rollbackOn = Exception.class)
 	public UserInsertResDto insert(final UserInsertReqDto data) {
 
-//		Uncomment 1l below to create super admin for the first time. Then comment back when it's been created
+//		Uncomment principalId = 1l and comment getPrinciple.getId() to create super admin for the first time. Then comment and uncomment back when it's been created
 //		final Long principalId = 1l;
 		final Long principalId = principalService.getPrinciple().getId();
 		
