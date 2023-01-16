@@ -17,7 +17,7 @@ First time run :
 - 7.Open http://localhost:8080/swagger-ui/index.html#/user-controller/insert in a browser.
   + 7a.Enter the correct data !IMPORTANT (especially email, since the password would be sent there. If you already create an account with a random email, you must delete the database again and follow the instruction from the start all over again). You can input random file code and extension though, for example, 'aaa' and 'png'.
 - 8.Undo the comment and uncomment steps above (3,4,5) till its like in the original state.
-- 9.Follow the front end steps.
+- 9.Follow the front end steps for further usage of the app (https://github.com/GantGanz/simple_asset_frontend).
 
 
 About the Simple Asset Management System app :
