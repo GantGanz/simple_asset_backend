@@ -7,7 +7,7 @@ First time run (MUST DO):
 - Open SecurityConfig (in com.test.simpleasset.config package) :
   + Uncomment /users/** matchers.
 - Open UserController (in com.test.simpleasset.controller package) 
-  + Comment the PreAuthorize to create super admin for the first time.
+  + Comment the PreAuthorize to create super admin for the first time. (Don't comment the Post Mapping)
 - Open UserService (in com.test.simpleasset.service package) :
   + Uncomment principalId = 1l and comment getPrinciple.getId().
   + Uncomment the ADMIN code and Comment the NON_ADMIN.
