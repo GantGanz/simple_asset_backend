@@ -1,6 +1,7 @@
 # Simple Asset Management Systm Backend
 
-First time run (MUST DO, since the steps below is the required steps to create the Super Admin account, which is mandatory to make the app run normally (with all the provided securities):
+First time run :
+(MUST DO, since the steps below is the required steps to create the Super Admin account, which is mandatory to make the app run normally, with all the provided securities)
 
 - 1.Create postgresql database named "simple_asset_management_system".
 - 2.Run all the sql code (open asset.sql in dbeaver then 'ctrl + A' and 'ctrl + enter').
