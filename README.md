@@ -21,7 +21,7 @@ First time run :
 
 
 About the Simple Asset Management System app :
-- This is an app for managing and tracking company's assets.
+- This is an app for managing and tracking companies assets.
 - The assets has their own 'type' and 'status' that might change on each transaction. 
 - The assets can be assigned to a place, employee (which must be registered first), and to a general type asset (must be assigned with a component type asset. ex: a RAM (component) can be assigned to a Laptop (general)). 
 - An asset might have an expired date, and a 'check out' might have a specified return date. 
