@@ -26,3 +26,7 @@ About the Simple Asset Management System app :
 - The assets can be assigned to a place, employee (which must be registered first), and to a general type asset (must be assigned with a component type asset. ex: a RAM (component) can be assigned to a Laptop (general)). 
 - An asset might have an expired date, and a 'check out' might have a specified return date. 
 - An email would be sent to the new user when you create an account or to the super admin when you create an asset. 
+
+How to use the app :
+Super Admin can create stores, companies, providers, and employees. Which then can be used to create Assets.
+Non Admin can check out multiple assets, and then check in half or all of the returned assets.
