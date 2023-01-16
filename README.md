@@ -15,7 +15,7 @@ First time run (MUST DO):
 - 7.Open http://localhost:8080/swagger-ui/index.html#/user-controller/insert in a browser.
   + 7a.Enter the correct data (especially email, since the password would be sent there. You can input random file code and extension, for example 'aaa' and 'png').
 - 8.Undo the comment and uncomment steps above (3,4,5) till its like in the original state.
-- 9.Run front end (ngserve).
+- 9.Follow the front end steps.
 
 Explanation :
 The steps above is the required steps to create Super Admin account, which is mandatory to make the app run normally (with all the provided securities).
