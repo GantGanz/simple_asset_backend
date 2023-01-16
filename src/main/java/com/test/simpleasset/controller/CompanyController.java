@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.test.simpleasset.dto.company.CompaniesDto;
-import com.test.simpleasset.dto.company.CompanyDataDto;
+import com.test.simpleasset.dto.company.CompanyDataResDto;
 import com.test.simpleasset.dto.company.CompanyDeleteResDto;
 import com.test.simpleasset.dto.company.CompanyInsertReqDto;
 import com.test.simpleasset.dto.company.CompanyInsertResDto;
@@ -44,8 +44,8 @@ public class CompanyController {
 	}
 	
 	@GetMapping("{id}")
-	public ResponseEntity<CompanyDataDto> getById(@PathVariable("id") final Long id) {
-		final CompanyDataDto result = companyService.getById(id);
+	public ResponseEntity<CompanyDataResDto> getById(@PathVariable("id") final Long id) {
+		final CompanyDataResDto result = companyService.getById(id);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	

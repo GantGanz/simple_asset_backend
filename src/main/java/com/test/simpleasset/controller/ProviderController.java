@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.test.simpleasset.dto.provider.ProviderDataDto;
+import com.test.simpleasset.dto.provider.ProviderDataResDto;
 import com.test.simpleasset.dto.provider.ProviderDeleteResDto;
 import com.test.simpleasset.dto.provider.ProviderInsertReqDto;
 import com.test.simpleasset.dto.provider.ProviderInsertResDto;
@@ -44,8 +44,8 @@ public class ProviderController {
 	}
 	
 	@GetMapping("{id}")
-	public ResponseEntity<ProviderDataDto> getById(@PathVariable("id") final Long id) {
-		final ProviderDataDto result = providerService.getById(id);
+	public ResponseEntity<ProviderDataResDto> getById(@PathVariable("id") final Long id) {
+		final ProviderDataResDto result = providerService.getById(id);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	

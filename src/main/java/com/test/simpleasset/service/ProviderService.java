@@ -14,6 +14,7 @@ import com.test.simpleasset.dao.FileDao;
 import com.test.simpleasset.dao.ProviderDao;
 import com.test.simpleasset.dao.StoreDao;
 import com.test.simpleasset.dto.provider.ProviderDataDto;
+import com.test.simpleasset.dto.provider.ProviderDataResDto;
 import com.test.simpleasset.dto.provider.ProviderDeleteReqDto;
 import com.test.simpleasset.dto.provider.ProviderDeleteResDto;
 import com.test.simpleasset.dto.provider.ProviderInsertDataResDto;
@@ -84,7 +85,7 @@ public class ProviderService {
 		return providerInsertResDto;
 	}
 
-	public ProviderDataDto getById(final Long id) {
+	public ProviderDataResDto getById(final Long id) {
 		final Optional<Provider> providerOptional = providerDao.getById(id);
 		final ProviderDataDto providerDataDto = new ProviderDataDto();
 		if (providerOptional.isPresent()) {
@@ -97,7 +98,9 @@ public class ProviderService {
 			providerDataDto.setProviderId(provider.getId());
 			providerDataDto.setVersion(provider.getVersion());
 		}
-		return providerDataDto;
+		final ProviderDataResDto providerDataResDto = new ProviderDataResDto();
+		providerDataResDto.setData(providerDataDto);
+		return providerDataResDto;
 	}
 
 	@Transactional(rollbackOn = Exception.class)

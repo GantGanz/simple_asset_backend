@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.test.simpleasset.dto.employee.EmployeeDataDto;
+import com.test.simpleasset.dto.employee.EmployeeDataResDto;
 import com.test.simpleasset.dto.employee.EmployeeDeleteResDto;
 import com.test.simpleasset.dto.employee.EmployeeInsertReqDto;
 import com.test.simpleasset.dto.employee.EmployeeInsertResDto;
@@ -44,8 +44,8 @@ public class EmployeeController {
 	}
 	
 	@GetMapping("{id}")
-	public ResponseEntity<EmployeeDataDto> getById(@PathVariable("id") final Long id) {
-		final EmployeeDataDto result = employeeService.getById(id);
+	public ResponseEntity<EmployeeDataResDto> getById(@PathVariable("id") final Long id) {
+		final EmployeeDataResDto result = employeeService.getById(id);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	

@@ -13,6 +13,7 @@ import com.test.simpleasset.constant.Message;
 import com.test.simpleasset.dao.FileDao;
 import com.test.simpleasset.dao.StoreDao;
 import com.test.simpleasset.dto.store.StoreDataDto;
+import com.test.simpleasset.dto.store.StoreDataResDto;
 import com.test.simpleasset.dto.store.StoreDeleteReqDto;
 import com.test.simpleasset.dto.store.StoreDeleteResDto;
 import com.test.simpleasset.dto.store.StoreInsertDataResDto;
@@ -77,7 +78,7 @@ public class StoreService {
 		return storeInsertResDto;
 	}
 
-	public StoreDataDto getById(final Long id) {
+	public StoreDataResDto getById(final Long id) {
 		final Optional<Store> storeOptional = storeDao.getById(id);
 		final StoreDataDto storeDataDto = new StoreDataDto();
 		if (storeOptional.isPresent()) {
@@ -89,7 +90,9 @@ public class StoreService {
 			storeDataDto.setStoreId(store.getId());
 			storeDataDto.setVersion(store.getVersion());
 		}
-		return storeDataDto;
+		final StoreDataResDto storeDataResDto = new StoreDataResDto();
+		storeDataResDto.setData(storeDataDto);
+		return storeDataResDto;
 	}
 
 	@Transactional(rollbackOn = Exception.class)

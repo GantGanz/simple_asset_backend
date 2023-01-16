@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.test.simpleasset.dto.asset.AssetDataDto;
+import com.test.simpleasset.dto.asset.AssetDataResDto;
 import com.test.simpleasset.dto.asset.AssetDeleteResDto;
 import com.test.simpleasset.dto.asset.AssetInsertReqDto;
 import com.test.simpleasset.dto.asset.AssetInsertResDto;
@@ -44,8 +44,8 @@ public class AssetController {
 	}
 	
 	@GetMapping("{id}")
-	public ResponseEntity<AssetDataDto> getById(@PathVariable("id") final Long id) {
-		final AssetDataDto result = assetService.getById(id);
+	public ResponseEntity<AssetDataResDto> getById(@PathVariable("id") final Long id) {
+		final AssetDataResDto result = assetService.getById(id);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	

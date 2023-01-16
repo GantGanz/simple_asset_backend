@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RestController;
 import com.test.simpleasset.dto.checkout.CheckOutInsertReqDto;
 import com.test.simpleasset.dto.checkout.CheckOutInsertResDto;
 import com.test.simpleasset.dto.checkout.CheckOutsDto;
-import com.test.simpleasset.dto.checkoutdetail.CheckOutDetailDataDto;
+import com.test.simpleasset.dto.checkoutdetail.CheckOutDetailDataResDto;
 import com.test.simpleasset.dto.checkoutdetail.CheckOutDetailsDto;
 import com.test.simpleasset.service.CheckOutDetailService;
 import com.test.simpleasset.service.CheckOutService;
@@ -67,8 +67,8 @@ public class CheckOutController {
 	
 	@GetMapping("{id}")
 	@PreAuthorize("hasAuthority('NA')")
-	public ResponseEntity<CheckOutDetailDataDto> getById(@PathVariable("id") final Long id) {
-		final CheckOutDetailDataDto result = checkOutDetailService.getById(id);
+	public ResponseEntity<CheckOutDetailDataResDto> getById(@PathVariable("id") final Long id) {
+		final CheckOutDetailDataResDto result = checkOutDetailService.getById(id);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	

@@ -14,6 +14,7 @@ import com.test.simpleasset.dao.CompanyDao;
 import com.test.simpleasset.dao.FileDao;
 import com.test.simpleasset.dto.company.CompaniesDto;
 import com.test.simpleasset.dto.company.CompanyDataDto;
+import com.test.simpleasset.dto.company.CompanyDataResDto;
 import com.test.simpleasset.dto.company.CompanyDeleteReqDto;
 import com.test.simpleasset.dto.company.CompanyDeleteResDto;
 import com.test.simpleasset.dto.company.CompanyInsertDataResDto;
@@ -75,7 +76,7 @@ public class CompanyService {
 		return companyInsertResDto;
 	}
 
-	public CompanyDataDto getById(final Long id) {
+	public CompanyDataResDto getById(final Long id) {
 		final Optional<Company> companyOptional = companyDao.getById(id);
 		final CompanyDataDto companyDataDto = new CompanyDataDto();
 		if (companyOptional.isPresent()) {
@@ -87,7 +88,9 @@ public class CompanyService {
 			companyDataDto.setVersion(company.getVersion());
 			companyDataDto.setIsActive(company.getIsActive());
 		}
-		return companyDataDto;
+		final CompanyDataResDto companyDataResDto = new CompanyDataResDto();
+		companyDataResDto.setData(companyDataDto);
+		return companyDataResDto;
 	}
 
 	@Transactional(rollbackOn = Exception.class)

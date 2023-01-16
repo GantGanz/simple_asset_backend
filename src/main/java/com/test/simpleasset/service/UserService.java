@@ -19,6 +19,7 @@ import com.test.simpleasset.dao.FileDao;
 import com.test.simpleasset.dao.RoleDao;
 import com.test.simpleasset.dao.UserDao;
 import com.test.simpleasset.dto.user.UserDataDto;
+import com.test.simpleasset.dto.user.UserDataResDto;
 import com.test.simpleasset.dto.user.UserDeleteReqDto;
 import com.test.simpleasset.dto.user.UserDeleteResDto;
 import com.test.simpleasset.dto.user.UserInsertDataResDto;
@@ -148,7 +149,7 @@ public class UserService implements UserDetailsService {
 		return updatePasswordResDto;
 	}
 
-	public UserDataDto getById(final Long id) {
+	public UserDataResDto getById(final Long id) {
 		final Optional<User> userOptional = userDao.getById(id);
 		final UserDataDto userDataDto = new UserDataDto();
 		if (userOptional.isPresent()) {
@@ -161,7 +162,9 @@ public class UserService implements UserDetailsService {
 			userDataDto.setVersion(user.getVersion());
 			userDataDto.setIsActive(user.getIsActive());
 		}
-		return userDataDto;
+		final UserDataResDto userDataResDto = new UserDataResDto();
+		userDataResDto.setData(userDataDto);
+		return userDataResDto;
 	}
 
 	public UsersDto getAll() {

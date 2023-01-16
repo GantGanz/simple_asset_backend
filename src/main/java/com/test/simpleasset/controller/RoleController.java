@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.test.simpleasset.dto.role.RoleDataDto;
+import com.test.simpleasset.dto.role.RoleDataResDto;
 import com.test.simpleasset.dto.role.RolesDto;
 import com.test.simpleasset.service.RoleService;
 
@@ -28,8 +28,8 @@ public class RoleController {
 	
 	@GetMapping("{id}")
 	@PreAuthorize("hasAuthority('SA')")
-	public ResponseEntity<RoleDataDto> getById(@PathVariable("id") final Long id) {
-		final RoleDataDto result = roleService.getById(id);
+	public ResponseEntity<RoleDataResDto> getById(@PathVariable("id") final Long id) {
+		final RoleDataResDto result = roleService.getById(id);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	

@@ -18,6 +18,7 @@ import com.test.simpleasset.dao.FileDao;
 import com.test.simpleasset.dao.ProviderDao;
 import com.test.simpleasset.dao.UserDao;
 import com.test.simpleasset.dto.asset.AssetDataDto;
+import com.test.simpleasset.dto.asset.AssetDataResDto;
 import com.test.simpleasset.dto.asset.AssetDeleteReqDto;
 import com.test.simpleasset.dto.asset.AssetDeleteResDto;
 import com.test.simpleasset.dto.asset.AssetInsertDataResDto;
@@ -147,7 +148,7 @@ public class AssetService {
 		return assetUpdateResDto;
 	}
 
-	public AssetDataDto getById(final Long id) {
+	public AssetDataResDto getById(final Long id) {
 		Optional<Asset> assetOptional = assetDao.getById(id);
 		final AssetDataDto assetDataDto = new AssetDataDto();
 		if (assetOptional.isPresent()) {
@@ -167,7 +168,9 @@ public class AssetService {
 			assetDataDto.setVersion(asset.getVersion());
 			assetDataDto.setProviderName(asset.getProvider().getProviderName());
 		}
-		return assetDataDto;
+		final AssetDataResDto assetDataResDto = new AssetDataResDto();
+		assetDataResDto.setData(assetDataDto);
+		return assetDataResDto;
 	}
 
 	public AssetsDto getAll() {

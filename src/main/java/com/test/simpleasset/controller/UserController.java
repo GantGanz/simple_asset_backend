@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.test.simpleasset.dto.user.UserDataDto;
+import com.test.simpleasset.dto.user.UserDataResDto;
 import com.test.simpleasset.dto.user.UserDeleteResDto;
 import com.test.simpleasset.dto.user.UserInsertReqDto;
 import com.test.simpleasset.dto.user.UserInsertResDto;
@@ -49,8 +49,8 @@ public class UserController {
 	}
 	
 	@GetMapping("{id}")
-	public ResponseEntity<UserDataDto> getById(@PathVariable("id") final Long id) {
-		final UserDataDto result = userService.getById(id);
+	public ResponseEntity<UserDataResDto> getById(@PathVariable("id") final Long id) {
+		final UserDataResDto result = userService.getById(id);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	

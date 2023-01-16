@@ -12,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.test.simpleasset.constant.Message;
 import com.test.simpleasset.dao.EmployeeDao;
 import com.test.simpleasset.dto.employee.EmployeeDataDto;
+import com.test.simpleasset.dto.employee.EmployeeDataResDto;
 import com.test.simpleasset.dto.employee.EmployeeDeleteReqDto;
 import com.test.simpleasset.dto.employee.EmployeeDeleteResDto;
 import com.test.simpleasset.dto.employee.EmployeeInsertDataResDto;
@@ -62,7 +63,7 @@ public class EmployeeService {
 		return employeeInsertResDto;
 	}
 
-	public EmployeeDataDto getById(final Long id) {
+	public EmployeeDataResDto getById(final Long id) {
 		final Optional<Employee> employeeOptional = employeeDao.getById(id);
 		final EmployeeDataDto employeeDataDto = new EmployeeDataDto();
 		if (employeeOptional.isPresent()) {
@@ -73,7 +74,9 @@ public class EmployeeService {
 			employeeDataDto.setIsActive(employee.getIsActive());
 			employeeDataDto.setVersion(employee.getVersion());
 		}
-		return employeeDataDto;
+		final EmployeeDataResDto employeeDataResDto = new EmployeeDataResDto();
+		employeeDataResDto.setData(employeeDataDto);
+		return employeeDataResDto;
 	}
 
 	@Transactional(rollbackOn = Exception.class)

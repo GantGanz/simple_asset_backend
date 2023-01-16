@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.test.simpleasset.dto.store.StoreDataDto;
+import com.test.simpleasset.dto.store.StoreDataResDto;
 import com.test.simpleasset.dto.store.StoreDeleteResDto;
 import com.test.simpleasset.dto.store.StoreInsertReqDto;
 import com.test.simpleasset.dto.store.StoreInsertResDto;
@@ -44,8 +44,8 @@ public class StoreController {
 	}
 	
 	@GetMapping("{id}")
-	public ResponseEntity<StoreDataDto> getById(@PathVariable("id") final Long id) {
-		final StoreDataDto result = storeService.getById(id);
+	public ResponseEntity<StoreDataResDto> getById(@PathVariable("id") final Long id) {
+		final StoreDataResDto result = storeService.getById(id);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	

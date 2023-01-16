@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 
 import com.test.simpleasset.dao.AssetStatusDao;
 import com.test.simpleasset.dto.assetstatus.AssetStatusDataDto;
+import com.test.simpleasset.dto.assetstatus.AssetStatusDataResDto;
 import com.test.simpleasset.dto.assetstatus.AssetStatusesDto;
 import com.test.simpleasset.model.AssetStatus;
 
@@ -18,7 +19,7 @@ public class AssetStatusService {
 	@Autowired
 	private AssetStatusDao assetStatusDao;
 
-	public AssetStatusDataDto getById(final Long id) {
+	public AssetStatusDataResDto getById(final Long id) {
 		Optional<AssetStatus> assetStatusOptional = assetStatusDao.getById(id);
 		final AssetStatusDataDto assetStatusDataDto = new AssetStatusDataDto();
 		if (assetStatusOptional.isPresent()) {
@@ -28,7 +29,9 @@ public class AssetStatusService {
 			assetStatusDataDto.setAssetStatusId(assetStatus.getId());
 			assetStatusDataDto.setVersion(assetStatus.getVersion());
 		}
-		return assetStatusDataDto;
+		final AssetStatusDataResDto assetStatusDataResDto = new AssetStatusDataResDto();
+		assetStatusDataResDto.setData(assetStatusDataDto);
+		return assetStatusDataResDto;
 	}
 
 	public AssetStatusesDto getAll() {

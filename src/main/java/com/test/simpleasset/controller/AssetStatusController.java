@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.test.simpleasset.dto.assetstatus.AssetStatusDataDto;
+import com.test.simpleasset.dto.assetstatus.AssetStatusDataResDto;
 import com.test.simpleasset.dto.assetstatus.AssetStatusesDto;
 import com.test.simpleasset.service.AssetStatusService;
 
@@ -25,8 +25,8 @@ public class AssetStatusController {
 	}
 	
 	@GetMapping("{id}")
-	public ResponseEntity<AssetStatusDataDto> getById(@PathVariable("id") final Long id) {
-		final AssetStatusDataDto result = assetStatusService.getById(id);
+	public ResponseEntity<AssetStatusDataResDto> getById(@PathVariable("id") final Long id) {
+		final AssetStatusDataResDto result = assetStatusService.getById(id);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
