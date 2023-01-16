@@ -1,4 +1,4 @@
-# Simple Asset Management Systm Backend
+# Simple Asset Management System Backend
 
 First time run :
 
@@ -18,3 +18,11 @@ First time run :
   + 7a.Enter the correct data !IMPORTANT (especially email, since the password would be sent there. If you already create an account with a random email, you must delete the database again and follow the instruction from the start all over again). You can input random file code and extension though, for example, 'aaa' and 'png'.
 - 8.Undo the comment and uncomment steps above (3,4,5) till its like in the original state.
 - 9.Follow the front end steps.
+
+
+About the Simple Asset Management System app :
+- This is an app for managing and tracking company's assets.
+- The assets has their own 'type' and 'status' that might change on each transaction. 
+- The assets can be assigned to a place, employee (which must be registered first), and to a general type asset (must be assigned with a component type asset. ex: a RAM (component) can be assigned to a Laptop (general)). 
+- An asset might have an expired date, and a 'check out' might have a specified return date. 
+- An email would be sent to the new user when you create an account or to the super admin when you create an asset. 
