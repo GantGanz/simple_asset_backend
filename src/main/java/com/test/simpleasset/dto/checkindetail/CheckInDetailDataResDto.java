@@ -2,7 +2,6 @@ package com.test.simpleasset.dto.checkindetail;
 
 public class CheckInDetailDataResDto {
 	private CheckInDetailDataDto data;
-	private String message;
 
 	public CheckInDetailDataDto getData() {
 		return data;
@@ -12,11 +11,4 @@ public class CheckInDetailDataResDto {
 		this.data = data;
 	}
 
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
 }

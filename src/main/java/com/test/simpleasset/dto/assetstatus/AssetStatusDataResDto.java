@@ -2,7 +2,6 @@ package com.test.simpleasset.dto.assetstatus;
 
 public class AssetStatusDataResDto {
 	private AssetStatusDataDto data;
-	private String message;
 
 	public AssetStatusDataDto getData() {
 		return data;
@@ -12,11 +11,4 @@ public class AssetStatusDataResDto {
 		this.data = data;
 	}
 
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
 }

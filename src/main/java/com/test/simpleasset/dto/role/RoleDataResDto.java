@@ -2,7 +2,6 @@ package com.test.simpleasset.dto.role;
 
 public class RoleDataResDto {
 	private RoleDataDto data;
-	private String message;
 
 	public RoleDataDto getData() {
 		return data;
@@ -12,11 +11,4 @@ public class RoleDataResDto {
 		this.data = data;
 	}
 
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
 }
