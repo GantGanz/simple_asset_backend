@@ -81,10 +81,10 @@ public class CheckInDao extends BaseDao {
 
 
 	public Optional<CheckIn> checkId(Long id) {
-		final String sql = " SELECT ci " + "FROM CheckIn ci " + "WHERE ci.checkOut.id = :id ";
+		final String sql = " SELECT * " + "FROM check_in ci " + "WHERE ci.check_out_id = :id ";
 		CheckIn checkIn = null;
 		try {
-			checkIn = em.createQuery(sql, CheckIn.class).setParameter("id", id).getSingleResult();
+			checkIn = (CheckIn) em.createNativeQuery(sql, CheckIn.class).setParameter("id", id).getSingleResult();
 			em.detach(checkIn);
 		} catch (NoResultException nre) {
 		} catch (Exception e) {
