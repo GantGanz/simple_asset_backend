@@ -1,14 +1,8 @@
 package com.test.simpleasset.dto.asset;
 
+import lombok.Data;
+
+@Data
 public class AssetDeleteReqDto {
 	private Long assetId;
-
-	public Long getassetId() {
-		return assetId;
-	}
-
-	public void setAssetId(Long assetId) {
-		this.assetId = assetId;
-	}
-
 }

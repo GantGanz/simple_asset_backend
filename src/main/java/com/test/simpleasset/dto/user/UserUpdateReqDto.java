@@ -4,6 +4,9 @@ import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
 
+import lombok.Data;
+
+@Data
 public class UserUpdateReqDto {
 	@NotNull(message = "Id Harus diisi!")
 	private Long userId;
@@ -17,52 +20,4 @@ public class UserUpdateReqDto {
 	@Size(max = 4, message = "extensions Terlalu panjang!")
 	private String extensions;
 	private Boolean isActive;
-
-	public Long getUserId() {
-		return userId;
-	}
-
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
-
-	public Integer getVersion() {
-		return version;
-	}
-
-	public void setVersion(Integer version) {
-		this.version = version;
-	}
-
-	public String getFileCodes() {
-		return fileCodes;
-	}
-
-	public void setFileCodes(String fileCodes) {
-		this.fileCodes = fileCodes;
-	}
-
-	public String getExtensions() {
-		return extensions;
-	}
-
-	public void setExtensions(String extensions) {
-		this.extensions = extensions;
-	}
-
-	public String getFullname() {
-		return fullname;
-	}
-
-	public void setFullname(String fullname) {
-		this.fullname = fullname;
-	}
-	
-	public Boolean getIsActive() {
-		return isActive;
-	}
-
-	public void setIsActive(Boolean isActive) {
-		this.isActive = isActive;
-	}
 }

@@ -1,14 +1,8 @@
 package com.test.simpleasset.dto.employee;
 
+import lombok.Data;
+
+@Data
 public class EmployeeDeleteReqDto {
 	private Long employeeId;
-
-	public Long getEmployeeId() {
-		return employeeId;
-	}
-
-	public void setEmployeeId(Long employeeId) {
-		this.employeeId = employeeId;
-	}
-
 }

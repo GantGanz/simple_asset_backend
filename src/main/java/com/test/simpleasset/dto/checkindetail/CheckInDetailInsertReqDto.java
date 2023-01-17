@@ -2,6 +2,9 @@ package com.test.simpleasset.dto.checkindetail;
 
 import javax.validation.constraints.NotNull;
 
+import lombok.Data;
+
+@Data
 public class CheckInDetailInsertReqDto {
 	@NotNull(message = "Check In Id di Detail Harus diisi!")
 	private Long checkInId;
@@ -9,28 +12,4 @@ public class CheckInDetailInsertReqDto {
 	private Long checkOutDetailId;
 	@NotNull(message = "Asset Status di Detail Harus diisi!")
 	private Long assetStatusId;
-
-	public Long getCheckInId() {
-		return checkInId;
-	}
-
-	public void setCheckInId(Long checkInId) {
-		this.checkInId = checkInId;
-	}
-
-	public Long getCheckOutDetailId() {
-		return checkOutDetailId;
-	}
-
-	public void setCheckOutDetailId(Long checkOutDetailId) {
-		this.checkOutDetailId = checkOutDetailId;
-	}
-
-	public Long getAssetStatusId() {
-		return assetStatusId;
-	}
-
-	public void setAssetStatusId(Long assetStatusId) {
-		this.assetStatusId = assetStatusId;
-	}
 }

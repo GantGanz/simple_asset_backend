@@ -3,6 +3,9 @@ package com.test.simpleasset.dto.company;
 import javax.validation.constraints.NotBlank;
 import javax.validation.constraints.Size;
 
+import lombok.Data;
+
+@Data
 public class CompanyInsertReqDto {
 	@NotBlank(message = "Harus diisi!")
 	@Size(max = 50)
@@ -15,37 +18,4 @@ public class CompanyInsertReqDto {
 	@NotBlank(message = "Harus diisi!")
 	@Size(max = 4)
 	private String extensions;
-
-	public String getCompanyCode() {
-		return companyCode;
-	}
-
-	public void setCompanyCode(String companyCode) {
-		this.companyCode = companyCode;
-	}
-
-	public String getCompanyName() {
-		return companyName;
-	}
-
-	public void setCompanyName(String companyName) {
-		this.companyName = companyName;
-	}
-
-	public String getFileCodes() {
-		return fileCodes;
-	}
-
-	public void setFileCodes(String fileCodes) {
-		this.fileCodes = fileCodes;
-	}
-
-	public String getExtensions() {
-		return extensions;
-	}
-
-	public void setExtensions(String extensions) {
-		this.extensions = extensions;
-	}
-
 }

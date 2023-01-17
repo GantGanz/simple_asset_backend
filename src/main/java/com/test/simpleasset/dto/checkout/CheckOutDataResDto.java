@@ -1,14 +1,8 @@
 package com.test.simpleasset.dto.checkout;
 
+import lombok.Data;
+
+@Data
 public class CheckOutDataResDto {
 	private CheckOutDataDto data;
-
-	public CheckOutDataDto getData() {
-		return data;
-	}
-
-	public void setData(CheckOutDataDto data) {
-		this.data = data;
-	}
-
 }

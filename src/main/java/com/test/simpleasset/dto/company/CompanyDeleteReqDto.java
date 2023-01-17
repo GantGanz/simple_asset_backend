@@ -1,14 +1,8 @@
 package com.test.simpleasset.dto.company;
 
+import lombok.Data;
+
+@Data
 public class CompanyDeleteReqDto {
 	private Long companyId;
-
-	public Long getCompanyId() {
-		return companyId;
-	}
-
-	public void setCompanyId(Long companyId) {
-		this.companyId = companyId;
-	}
-
 }

@@ -1,13 +1,8 @@
 package com.test.simpleasset.dto.employee;
 
+import lombok.Data;
+
+@Data
 public class EmployeeDeleteResDto {
 	private String message;
-
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
 }

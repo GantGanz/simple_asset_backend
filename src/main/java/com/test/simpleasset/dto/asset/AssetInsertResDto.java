@@ -1,22 +1,9 @@
 package com.test.simpleasset.dto.asset;
 
+import lombok.Data;
+
+@Data
 public class AssetInsertResDto {
 	private AssetInsertDataResDto data;
 	private String message;
-
-	public AssetInsertDataResDto getData() {
-		return data;
-	}
-
-	public void setData(AssetInsertDataResDto data) {
-		this.data = data;
-	}
-
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
 }

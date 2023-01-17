@@ -1,14 +1,8 @@
 package com.test.simpleasset.dto.checkindetail;
 
+import lombok.Data;
+
+@Data
 public class CheckInDetailInsertDataResDto {
 	private Long id;
-
-	public Long getId() {
-		return id;
-	}
-
-	public void setId(Long id) {
-		this.id = id;
-	}
-
 }

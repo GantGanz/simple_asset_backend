@@ -97,12 +97,12 @@ public class StoreService {
 
 	@Transactional(rollbackOn = Exception.class)
 	public StoreUpdateResDto update(final StoreUpdateReqDto data) {
-		final Optional<Store> storeOptional = storeDao.getById(data.getstoreId());
+		final Optional<Store> storeOptional = storeDao.getById(data.getStoreId());
 		final StoreUpdateResDto storeUpdateResDto = new StoreUpdateResDto();
 		Store storeUpdate = null;
 		if (storeOptional.isPresent()) {
 			storeUpdate = storeOptional.get();
-			storeUpdate.setStoreName(data.getstoreName());
+			storeUpdate.setStoreName(data.getStoreName());
 			storeUpdate.setIsActive(data.getIsActive());
 
 			final long oldFileId = storeUpdate.getFile().getId();

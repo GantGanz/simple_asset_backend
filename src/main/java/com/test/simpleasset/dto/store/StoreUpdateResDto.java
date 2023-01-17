@@ -1,22 +1,9 @@
 package com.test.simpleasset.dto.store;
 
+import lombok.Data;
+
+@Data
 public class StoreUpdateResDto {
 	private StoreUpdateReqDto data;
 	private String message;
-
-	public StoreUpdateReqDto getData() {
-		return data;
-	}
-
-	public void setData(StoreUpdateReqDto data) {
-		this.data = data;
-	}
-
-	public String getMessage() {
-		return message;
-	}
-
-	public void setMessage(String message) {
-		this.message = message;
-	}
 }
