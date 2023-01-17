@@ -92,10 +92,10 @@ public class CheckOutService{
 		final CheckOutInsertDataResDto checkOutInsertDataResDto = new CheckOutInsertDataResDto();
 
 		CheckOut checkOutInsert = new CheckOut();
-		if (checkOut.getAssetGeneralId() != null) {
+		if (checkOut.getAssetGeneralId() != null && checkOut.getAssetGeneralId() != 0) {
 			final Asset asset = assetDao.getById(checkOut.getAssetGeneralId()).get();
 			checkOutInsert.setAssetGeneral(asset);
-		} else if (checkOut.getEmployeeId() != null) {
+		} else if (checkOut.getEmployeeId() != null && checkOut.getEmployeeId() != 0) {
 			final Employee employee = employeeDao.getById(checkOut.getEmployeeId()).get();
 			checkOutInsert.setEmployee(employee);
 		} else {
