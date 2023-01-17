@@ -22,5 +22,7 @@ About the Simple Asset Management System app :
 - An email would be sent to the new user when you create an account or to the super admin when you create an asset. 
 
 How to use the app :
+
 Super Admin can create stores, companies, providers, and employees. Which then can be used to create Assets.
+
 Non Admin can check out multiple assets, and then check in half or all of the returned assets.
