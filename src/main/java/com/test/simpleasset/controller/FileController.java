@@ -13,6 +13,9 @@ import org.springframework.web.bind.annotation.RestController;
 import com.test.simpleasset.model.File;
 import com.test.simpleasset.service.FileService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping("files")
 public class FileController {

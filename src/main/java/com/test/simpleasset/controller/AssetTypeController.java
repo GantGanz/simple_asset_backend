@@ -12,6 +12,9 @@ import com.test.simpleasset.dto.assettype.AssetTypeDataResDto;
 import com.test.simpleasset.dto.assettype.AssetTypesDto;
 import com.test.simpleasset.service.AssetTypeService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping("asset-types")
 public class AssetTypeController {

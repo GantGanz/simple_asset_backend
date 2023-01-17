@@ -24,6 +24,9 @@ import com.test.simpleasset.dto.company.CompanyUpdateReqDto;
 import com.test.simpleasset.dto.company.CompanyUpdateResDto;
 import com.test.simpleasset.service.CompanyService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping("companies")
 public class CompanyController {

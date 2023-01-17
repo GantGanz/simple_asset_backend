@@ -24,6 +24,9 @@ import com.test.simpleasset.dto.employee.EmployeeUpdateResDto;
 import com.test.simpleasset.dto.employee.EmployeesDto;
 import com.test.simpleasset.service.EmployeeService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping("employees")
 public class EmployeeController {

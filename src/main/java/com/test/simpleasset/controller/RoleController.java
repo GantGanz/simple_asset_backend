@@ -13,6 +13,9 @@ import com.test.simpleasset.dto.role.RoleDataResDto;
 import com.test.simpleasset.dto.role.RolesDto;
 import com.test.simpleasset.service.RoleService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping("roles")
 public class RoleController {

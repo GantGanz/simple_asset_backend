@@ -24,6 +24,9 @@ import com.test.simpleasset.dto.provider.ProviderUpdateResDto;
 import com.test.simpleasset.dto.provider.ProvidersDto;
 import com.test.simpleasset.service.ProviderService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping("providers")
 public class ProviderController {

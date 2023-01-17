@@ -20,6 +20,9 @@ import com.test.simpleasset.dto.checkindetail.CheckInDetailsDto;
 import com.test.simpleasset.service.CheckInDetailService;
 import com.test.simpleasset.service.CheckInService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping("check-ins")
 public class CheckInController {

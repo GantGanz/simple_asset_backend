@@ -12,6 +12,9 @@ import com.test.simpleasset.dto.assetstatus.AssetStatusDataResDto;
 import com.test.simpleasset.dto.assetstatus.AssetStatusesDto;
 import com.test.simpleasset.service.AssetStatusService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping("asset-statuses")
 public class AssetStatusController {

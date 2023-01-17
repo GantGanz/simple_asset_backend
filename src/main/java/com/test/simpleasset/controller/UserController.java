@@ -27,6 +27,9 @@ import com.test.simpleasset.dto.user.UserUpdateResDto;
 import com.test.simpleasset.dto.user.UsersDto;
 import com.test.simpleasset.service.UserService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping("users")
 public class UserController {

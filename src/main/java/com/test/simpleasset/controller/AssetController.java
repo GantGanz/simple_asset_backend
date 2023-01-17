@@ -24,6 +24,9 @@ import com.test.simpleasset.dto.asset.AssetUpdateResDto;
 import com.test.simpleasset.dto.asset.AssetsDto;
 import com.test.simpleasset.service.AssetService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping("assets")
 public class AssetController {

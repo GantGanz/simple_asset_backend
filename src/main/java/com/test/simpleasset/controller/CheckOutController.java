@@ -21,6 +21,9 @@ import com.test.simpleasset.dto.checkoutdetail.CheckOutDetailsDto;
 import com.test.simpleasset.service.CheckOutDetailService;
 import com.test.simpleasset.service.CheckOutService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping("check-outs")
 public class CheckOutController {

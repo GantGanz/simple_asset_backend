@@ -24,6 +24,9 @@ import com.test.simpleasset.dto.store.StoreUpdateResDto;
 import com.test.simpleasset.dto.store.StoresDto;
 import com.test.simpleasset.service.StoreService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping("stores")
 public class StoreController {

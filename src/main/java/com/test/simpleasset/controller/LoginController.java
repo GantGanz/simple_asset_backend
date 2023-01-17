@@ -25,6 +25,9 @@ import com.test.simpleasset.model.User;
 import com.test.simpleasset.service.JwtService;
 import com.test.simpleasset.service.UserService;
 
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+
+@SecurityRequirement(name = "bearerAuth")
 @RestController
 @RequestMapping("login")
 public class LoginController {
