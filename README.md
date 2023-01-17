@@ -4,7 +4,7 @@ How to run :
 - Create postgresql database named "simple_asset_management_system".
 - Run asset.sql (https://github.com/GantGanz/simple_asset_backend/blob/main/asset.sql).
 - Run SimpleassetApplication.
-- Open http://localhost:8080/swagger-ui/index.html#/ in a browser.
+- Open http://localhost:8080/swagger-ui/index.html#/login-controller/login in a browser.
 - Login admin:
   + username: admin@gmail.com
   + password: admin
