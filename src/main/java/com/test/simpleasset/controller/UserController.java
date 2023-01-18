@@ -45,8 +45,15 @@ public class UserController {
 	
 	@GetMapping("fullname/{name}")
 	@PreAuthorize("hasAuthority('SA')")
-	public ResponseEntity<UsersDto> findByName(@PathVariable("name") final String name)  {
+	public ResponseEntity<UsersDto> findByFullname(@PathVariable("name") final String name)  {
 		final UsersDto result = userService.findByFullname(name);
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+	
+	@GetMapping("email/{email}")
+	@PreAuthorize("hasAuthority('SA')")
+	public ResponseEntity<UsersDto> findByEmail(@PathVariable("email") final String email)  {
+		final UsersDto result = userService.findByEmail(email);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
