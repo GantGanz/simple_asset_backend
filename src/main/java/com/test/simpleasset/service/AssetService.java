@@ -152,7 +152,7 @@ public class AssetService {
 		}
 		return assetUpdateResDto;
 	}
-
+	
 	public AssetDataResDto getById(final Long id) {
 		Optional<Asset> assetOptional = assetDao.getById(id);
 		final AssetDataDto assetDataDto = new AssetDataDto();
@@ -187,6 +187,41 @@ public class AssetService {
                 .thenComparing(Asset::getSerialNumber);
 		final Stream<Asset> sortedAssets = assets.stream()
             .sorted(compareByNameThenSerial);
+
+		sortedAssets.forEach(asset -> {
+			final AssetDataDto assetDataDto = new AssetDataDto();
+			assetDataDto.setAssetName(asset.getAssetName());
+			assetDataDto.setAssetTypeName(asset.getAssetType().getAssetTypeName());
+			assetDataDto.setAssetStatusName(asset.getAssetStatus().getAssetStatusName());
+			if (asset.getExpiredDate() != null) {
+				assetDataDto.setExpiredDate(asset.getExpiredDate());
+			}
+			assetDataDto.setInvoiceNumber(asset.getInvoiceNumber());
+			assetDataDto.setSerialNumber(asset.getSerialNumber());
+			assetDataDto.setCompanyName(asset.getCompany().getCompanyName());
+			assetDataDto.setFileId(asset.getFile().getId());
+			assetDataDto.setAssetId(asset.getId());
+			assetDataDto.setVersion(asset.getVersion());
+			assetDataDto.setProviderName(asset.getProvider().getProviderName());
+			assetDataDto.setIsActive(asset.getIsActive());
+			dataDtos.add(assetDataDto);
+		});
+		
+		final AssetsDto assetsDto = new AssetsDto();
+		assetsDto.setData(dataDtos);
+
+		return assetsDto;
+	}
+	
+	public AssetsDto findByName(final String name){
+		final List<Asset> assets = assetDao.getAll();
+		final List<AssetDataDto> dataDtos = new ArrayList<>();
+		
+		final Comparator<Asset> compareByNameThenSerial = Comparator
+                .comparing(Asset::getAssetName)
+                .thenComparing(Asset::getSerialNumber);
+		final Stream<Asset> sortedAssets = assets.stream()
+            .sorted(compareByNameThenSerial).filter(asset -> asset.getAssetName().contains(name));
 
 		sortedAssets.forEach(asset -> {
 			final AssetDataDto assetDataDto = new AssetDataDto();

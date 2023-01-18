@@ -14,9 +14,6 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 
 import com.test.simpleasset.dto.error.ErrorResDto;
 
-import io.swagger.v3.oas.annotations.security.SecurityRequirement;
-
-@SecurityRequirement(name = "bearerAuth")
 @ControllerAdvice
 public class ErrorHandler {
 	

@@ -52,6 +52,12 @@ public class AssetController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@GetMapping("name/{name}")
+	public ResponseEntity<AssetsDto> findByName(@PathVariable("name") final String name) {
+		final AssetsDto result = assetService.findByName(name);
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+	
 	@DeleteMapping("{id}")
 	@PreAuthorize("hasAuthority('SA')")
 	public ResponseEntity<AssetDeleteResDto> delete(@PathVariable("id") final Long id) {
