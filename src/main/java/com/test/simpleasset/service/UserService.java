@@ -59,7 +59,7 @@ public class UserService implements UserDetailsService {
 //		Uncomment principalId = 1l and comment getPrinciple.getId() to create super admin for the first time. Then comment and uncomment back when it's been created
 //		final Long principalId = 1l;
 		final Long principalId = principalService.getPrinciple().getId();
-		
+
 		final UserInsertResDto userInsertResDto = new UserInsertResDto();
 		final UserInsertDataResDto userInsertDataResDto = new UserInsertDataResDto();
 		final User user = new User();
@@ -84,7 +84,7 @@ public class UserService implements UserDetailsService {
 //		Uncomment the ADMIN code and Comment the NON_ADMIN code to create super admin for the first time. Then undo everything when it's been created
 //		final Role role = roleDao.getCodeId(UserType.ADMIN.getRoleCode()).get();
 		final Role role = roleDao.getCodeId(UserType.NON_ADMIN.getRoleCode()).get();
-		
+
 		user.setRole(role);
 
 		final User userInsert = userDao.insert(user);
@@ -172,15 +172,39 @@ public class UserService implements UserDetailsService {
 
 	public UsersDto getAll() {
 		final List<User> users = userDao.getAll();
-		
-		final Comparator<User> compareByFullnameThenEmail = Comparator
-                .comparing(User::getFullname)
-                .thenComparing(User::getEmail);
-		final Stream<User> sortedUsers = users.stream()
-            .sorted(compareByFullnameThenEmail);
-		
+
+		final Comparator<User> compareByFullnameThenEmail = Comparator.comparing(User::getFullname)
+				.thenComparing(User::getEmail);
+		final Stream<User> sortedUsers = users.stream().sorted(compareByFullnameThenEmail);
+
 		final List<UserDataDto> dataDtos = new ArrayList<>();
-		sortedUsers.forEach(user -> {	
+		sortedUsers.forEach(user -> {
+			final UserDataDto userDataDto = new UserDataDto();
+			userDataDto.setFullname(user.getFullname());
+			userDataDto.setEmail(user.getEmail());
+			userDataDto.setRoleName(user.getRole().getRoleName());
+			userDataDto.setFileId(user.getFile().getId());
+			userDataDto.setUserId(user.getId());
+			userDataDto.setVersion(user.getVersion());
+			userDataDto.setIsActive(user.getIsActive());
+			dataDtos.add(userDataDto);
+		});
+		final UsersDto usersDto = new UsersDto();
+		usersDto.setData(dataDtos);
+
+		return usersDto;
+	}
+
+	public UsersDto findByFullname(final String name) {
+		final List<User> users = userDao.getAll();
+
+		final Comparator<User> compareByFullnameThenEmail = Comparator.comparing(User::getFullname)
+				.thenComparing(User::getEmail);
+		final Stream<User> sortedUsers = users.stream().sorted(compareByFullnameThenEmail)
+				.filter(user -> user.getFullname().toLowerCase().contains(name.toLowerCase()));
+
+		final List<UserDataDto> dataDtos = new ArrayList<>();
+		sortedUsers.forEach(user -> {
 			final UserDataDto userDataDto = new UserDataDto();
 			userDataDto.setFullname(user.getFullname());
 			userDataDto.setEmail(user.getEmail());

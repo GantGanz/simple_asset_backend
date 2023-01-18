@@ -43,6 +43,13 @@ public class UserController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@GetMapping("fullname/{name}")
+	@PreAuthorize("hasAuthority('SA')")
+	public ResponseEntity<UsersDto> findByName(@PathVariable("name") final String name)  {
+		final UsersDto result = userService.findByFullname(name);
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+	
 //	Comment the Post PreAuthorize to create super admin for the first time. Then Uncomment back when it has been created
 	@PostMapping
 	@PreAuthorize("hasAuthority('SA')")

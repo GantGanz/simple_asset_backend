@@ -73,7 +73,7 @@ public class AssetService {
 		}
 		asset.setCreatedBy(principalService.getPrinciple().getId());
 		asset.setUpdatedBy(principalService.getPrinciple().getId());
-		
+
 		final AssetStatus assetStatus = assetStatusDao.getById(data.getAssetStatusId()).get();
 		asset.setAssetStatus(assetStatus);
 		final AssetType assetType = assetTypeDao.getById(data.getAssetTypeId()).get();
@@ -152,7 +152,7 @@ public class AssetService {
 		}
 		return assetUpdateResDto;
 	}
-	
+
 	public AssetDataResDto getById(final Long id) {
 		Optional<Asset> assetOptional = assetDao.getById(id);
 		final AssetDataDto assetDataDto = new AssetDataDto();
@@ -181,12 +181,10 @@ public class AssetService {
 	public AssetsDto getAll() {
 		final List<Asset> assets = assetDao.getAll();
 		final List<AssetDataDto> dataDtos = new ArrayList<>();
-		
-		final Comparator<Asset> compareByNameThenSerial = Comparator
-                .comparing(Asset::getAssetName)
-                .thenComparing(Asset::getSerialNumber);
-		final Stream<Asset> sortedAssets = assets.stream()
-            .sorted(compareByNameThenSerial);
+
+		final Comparator<Asset> compareByNameThenSerial = Comparator.comparing(Asset::getAssetName)
+				.thenComparing(Asset::getSerialNumber);
+		final Stream<Asset> sortedAssets = assets.stream().sorted(compareByNameThenSerial);
 
 		sortedAssets.forEach(asset -> {
 			final AssetDataDto assetDataDto = new AssetDataDto();
@@ -206,22 +204,21 @@ public class AssetService {
 			assetDataDto.setIsActive(asset.getIsActive());
 			dataDtos.add(assetDataDto);
 		});
-		
+
 		final AssetsDto assetsDto = new AssetsDto();
 		assetsDto.setData(dataDtos);
 
 		return assetsDto;
 	}
-	
-	public AssetsDto findByName(final String name){
+
+	public AssetsDto findByName(final String name) {
 		final List<Asset> assets = assetDao.getAll();
 		final List<AssetDataDto> dataDtos = new ArrayList<>();
-		
-		final Comparator<Asset> compareByNameThenSerial = Comparator
-                .comparing(Asset::getAssetName)
-                .thenComparing(Asset::getSerialNumber);
-		final Stream<Asset> sortedAssets = assets.stream()
-            .sorted(compareByNameThenSerial).filter(asset -> asset.getAssetName().contains(name));
+
+		final Comparator<Asset> compareByNameThenSerial = Comparator.comparing(Asset::getAssetName)
+				.thenComparing(Asset::getSerialNumber);
+		final Stream<Asset> sortedAssets = assets.stream().sorted(compareByNameThenSerial)
+				.filter(asset -> asset.getAssetName().toLowerCase().contains(name.toLowerCase()));
 
 		sortedAssets.forEach(asset -> {
 			final AssetDataDto assetDataDto = new AssetDataDto();
@@ -241,7 +238,7 @@ public class AssetService {
 			assetDataDto.setIsActive(asset.getIsActive());
 			dataDtos.add(assetDataDto);
 		});
-		
+
 		final AssetsDto assetsDto = new AssetsDto();
 		assetsDto.setData(dataDtos);
 
