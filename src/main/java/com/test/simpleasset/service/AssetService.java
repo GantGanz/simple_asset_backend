@@ -177,14 +177,14 @@ public class AssetService {
 
 	public AssetsDto getAll() {
 		final List<Asset> assets = assetDao.getAll();
+		final List<AssetDataDto> dataDtos = new ArrayList<>();
+		
 		final Comparator<Asset> compareByNameThenSerial = Comparator
                 .comparing(Asset::getAssetName)
                 .thenComparing(Asset::getSerialNumber);
-
 		final Stream<Asset> sortedAssets = assets.stream()
             .sorted(compareByNameThenSerial);
 
-		final List<AssetDataDto> dataDtos = new ArrayList<>();
 		sortedAssets.forEach(asset -> {
 			final AssetDataDto assetDataDto = new AssetDataDto();
 			assetDataDto.setAssetName(asset.getAssetName());

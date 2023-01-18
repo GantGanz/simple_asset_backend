@@ -1,7 +1,9 @@
 package com.test.simpleasset.service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -20,7 +22,13 @@ public class CheckInDetailService {
 	public CheckInDetailsDto getAllCheckedIn(final Long checkInId) {
 		final List<CheckInDetail> checkInDetails = checkInDetailDao.getAllCheckedIn(checkInId);
 		final List<CheckInDetailDataDto> dataDtos = new ArrayList<>();
-		checkInDetails.stream().forEach(checkInDetail -> {			
+		
+		final Comparator<CheckInDetail> compareByCheckInTime = Comparator
+                .comparing(CheckInDetail::getCheckInTime).reversed();
+		final Stream<CheckInDetail> sortedCheckInDetails = checkInDetails.stream()
+            .sorted(compareByCheckInTime);
+		
+		sortedCheckInDetails.forEach(checkInDetail -> {			
 			final CheckInDetailDataDto checkInDetailDataDto = new CheckInDetailDataDto();
 			checkInDetailDataDto.setAssetName(checkInDetail.getCheckOutDetail().getAsset().getAssetName());
 			checkInDetailDataDto.setAssetStatus(checkInDetail.getAssetStatus().getAssetStatusName());

@@ -2,8 +2,10 @@ package com.test.simpleasset.service;
 
 import java.time.LocalDateTime;
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import javax.transaction.Transactional;
 
@@ -50,8 +52,15 @@ public class CheckInService {
 
 	public CheckInsDto getAll() {
 		final List<CheckIn> checkIns = checkInDao.getAll();
+		
+		final Comparator<CheckIn> compareByLastCheckInTime = Comparator
+                .comparing(CheckIn::getUpdatedAt)
+				.thenComparing(CheckIn::getCreatedAt).reversed();
+		final Stream<CheckIn> sortedCheckIns = checkIns.stream()
+				.sorted(compareByLastCheckInTime);
+
 		final List<CheckInDataDto> dataDtos = new ArrayList<>();
-		checkIns.stream().forEach(checkIn -> {	
+		sortedCheckIns.forEach(checkIn -> {
 			final CheckInDataDto checkInDataDto = new CheckInDataDto();
 			checkInDataDto.setTrxCode(checkIn.getCheckOut().getTrxCode());
 			checkInDataDto.setCheckOutTime(checkIn.getCheckOut().getTimeCheckOut());

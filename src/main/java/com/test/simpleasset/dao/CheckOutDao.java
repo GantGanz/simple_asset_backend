@@ -21,7 +21,7 @@ public class CheckOutDao extends BaseDao{
 				+ "check_out_location, trx_code, time_check_out, co.created_by, co.updated_by, "
 				+ "co.ver, co.is_active "
 				+ "FROM check_out co LEFT JOIN employee e ON co.employee_id = e.id "
-				+ " LEFT JOIN asset a ON co.asset_general_id = a.id;";
+				+ "LEFT JOIN asset a ON co.asset_general_id = a.id ";
 		
 		final List<?> result = em.createNativeQuery(sql).getResultList();
 

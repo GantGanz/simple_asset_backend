@@ -39,6 +39,7 @@ public class CheckOut extends BaseModel{
 	public void prePersist() {
 		this.timeCheckOut = LocalDateTime.now();
 		setCreatedAt(LocalDateTime.now());
+		setUpdatedAt(LocalDateTime.now());
 		setIsActive(true);
 	}
 }

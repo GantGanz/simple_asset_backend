@@ -74,7 +74,8 @@ public class CheckOutDetailDao extends BaseDao{
 				+ "FROM check_in_detail cid RIGHT JOIN check_out_detail cod ON cid.check_out_detail_id = cod.id "
 				+ "INNER JOIN asset a ON a.id = cod.asset_id " 
 				+ "INNER JOIN check_out co ON co.id = cod.check_out_id "
-				+ "WHERE cid.id IS NULL ORDER BY cid.id; ";
+				+ "WHERE cid.id IS NULL ORDER BY cid.id "
+				+ "ORDER BY cod.id ";
 		final List<?> result = em.createNativeQuery(sql).getResultList();
 		final List<CheckOutDetail> checkOutDetails = new ArrayList<>();
 

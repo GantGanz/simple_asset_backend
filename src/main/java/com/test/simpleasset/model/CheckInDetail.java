@@ -38,6 +38,7 @@ public class CheckInDetail extends BaseModel{
 	public void prePersist() {
 		this.checkInTime = LocalDateTime.now();
 		setCreatedAt(LocalDateTime.now());
+		setUpdatedAt(LocalDateTime.now());
 		setIsActive(true);
 	}
 }

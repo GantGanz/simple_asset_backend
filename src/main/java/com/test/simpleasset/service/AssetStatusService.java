@@ -1,8 +1,10 @@
 package com.test.simpleasset.service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -37,7 +39,14 @@ public class AssetStatusService {
 	public AssetStatusesDto getAll() {
 		final List<AssetStatus> assetStatuses = assetStatusDao.getAll();
 		final List<AssetStatusDataDto> dataDtos = new ArrayList<>();
-		assetStatuses.stream().forEach(assetStatus -> {
+		
+		final Comparator<AssetStatus> compareByNameThenCode = Comparator
+                .comparing(AssetStatus::getAssetStatusName)
+                .thenComparing(AssetStatus::getAssetStatusCode);
+		final Stream<AssetStatus> sortedAssetStatuses = assetStatuses.stream()
+            .sorted(compareByNameThenCode);
+		
+		sortedAssetStatuses.forEach(assetStatus -> {
 			final AssetStatusDataDto assetStatusDataDto = new AssetStatusDataDto();
 			assetStatusDataDto.setAssetStatusCode(assetStatus.getAssetStatusCode());
 			assetStatusDataDto.setAssetStatusName(assetStatus.getAssetStatusName());

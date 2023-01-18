@@ -1,7 +1,9 @@
 package com.test.simpleasset.service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
+import java.util.stream.Stream;
 
 import javax.transaction.Transactional;
 
@@ -40,8 +42,14 @@ public class CheckOutService{
 
 	public CheckOutsDto getAll() {
 		final List<CheckOut> checkOuts = checkOutDao.getAll();
+		
+		final Comparator<CheckOut> compareByTimeCheckOut = Comparator
+                .comparing(CheckOut::getTimeCheckOut).reversed();
+		final Stream<CheckOut> sortedCheckOuts = checkOuts.stream()
+				.sorted(compareByTimeCheckOut);
+		
 		final List<CheckOutDataDto> dataDtos = new ArrayList<>();
-		checkOuts.stream().forEach(checkOut -> {	
+		sortedCheckOuts.forEach(checkOut -> {	
 			final CheckOutDataDto checkOutDataDto = new CheckOutDataDto();
 			checkOutDataDto.setTrxCode(checkOut.getTrxCode());
 			checkOutDataDto.setCheckOutTime(checkOut.getTimeCheckOut());
