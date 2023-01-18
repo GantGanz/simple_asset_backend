@@ -1,8 +1,10 @@
 package com.test.simpleasset.service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import javax.transaction.Transactional;
 
@@ -36,8 +38,15 @@ public class StoreService {
 
 	public StoresDto getAll() {
 		final List<Store> stores = storeDao.getAll();
+		
+		final Comparator<Store> compareByNameThenCode = Comparator
+                .comparing(Store::getStoreName)
+                .thenComparing(Store::getStoreCode);
+		final Stream<Store> sortedStores = stores.stream()
+            .sorted(compareByNameThenCode);
+		
 		final List<StoreDataDto> dataDtos = new ArrayList<>();
-		stores.stream().forEach(store -> {	
+		sortedStores.forEach(store -> {	
 			final StoreDataDto storeDataDto = new StoreDataDto();
 			storeDataDto.setStoreCode(store.getStoreCode());
 			storeDataDto.setStoreName(store.getStoreName());

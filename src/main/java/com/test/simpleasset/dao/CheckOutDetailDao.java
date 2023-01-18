@@ -30,7 +30,7 @@ public class CheckOutDetailDao extends BaseDao{
 				+ "FROM check_out_detail cod INNER JOIN asset a ON a.id = cod.asset_id "
 				+ "INNER JOIN check_out co ON co.id = cod.check_out_id "
 				+ "WHERE check_out_id = :selectedId "
-				+ "ORDER BY cod.id ";
+				+ "ORDER BY asset_name ";
 
 		final List<?> result = em.createNativeQuery(sql)
 				.setParameter("selectedId", selectedId)

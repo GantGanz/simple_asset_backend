@@ -1,8 +1,10 @@
 package com.test.simpleasset.service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import javax.transaction.Transactional;
 
@@ -169,8 +171,15 @@ public class UserService implements UserDetailsService {
 
 	public UsersDto getAll() {
 		final List<User> users = userDao.getAll();
+		
+		final Comparator<User> compareByFullnameThenEmail = Comparator
+                .comparing(User::getFullname)
+                .thenComparing(User::getEmail);
+		final Stream<User> sortedUsers = users.stream()
+            .sorted(compareByFullnameThenEmail);
+		
 		final List<UserDataDto> dataDtos = new ArrayList<>();
-		users.stream().forEach(user -> {	
+		sortedUsers.forEach(user -> {	
 			final UserDataDto userDataDto = new UserDataDto();
 			userDataDto.setFullname(user.getFullname());
 			userDataDto.setEmail(user.getEmail());
