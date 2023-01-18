@@ -66,7 +66,7 @@ public class UserService implements UserDetailsService {
 		user.setFullname(data.getFullname());
 		user.setEmail(data.getEmail());
 		user.setCreatedBy(principalId);
-		user.setUpdatedBy(null);
+		user.setUpdatedBy(principalId);
 
 		final String plainPassword = RandomNumberGeneratorUtil
 				.givenUsingJava8_whenGeneratingRandomAlphanumericString_thenCorrect();
@@ -77,7 +77,7 @@ public class UserService implements UserDetailsService {
 		file.setFileCodes(data.getFileCodes());
 		file.setExtensions(data.getExtensions());
 		file.setCreatedBy(principalId);
-		file.setUpdatedBy(null);
+		file.setUpdatedBy(principalId);
 		file = fileDao.insert(file);
 		user.setFile(file);
 
@@ -118,6 +118,7 @@ public class UserService implements UserDetailsService {
 			file.setFileCodes(data.getFileCodes());
 			file.setExtensions(data.getExtensions());
 			file.setCreatedBy(principalService.getPrinciple().getId());
+			file.setUpdatedBy(principalService.getPrinciple().getId());
 			file = fileDao.insert(file);
 			userUpdate.setFile(file);
 

@@ -70,12 +70,14 @@ public class StoreService {
 		store.setStoreCode(data.getStoreCode());
 		store.setStoreName(data.getStoreName());
 		store.setCreatedBy(principalService.getPrinciple().getId());
+		store.setUpdatedBy(principalService.getPrinciple().getId());
 		store.setUpdatedBy(null);
 
 		File file = new File();
 		file.setFileCodes(data.getFileCodes());
 		file.setExtensions(data.getExtensions());
 		file.setCreatedBy(principalService.getPrinciple().getId());
+		file.setUpdatedBy(principalService.getPrinciple().getId());
 		file.setUpdatedBy(null);
 		file = fileDao.insert(file);
 		store.setFile(file);
@@ -119,6 +121,7 @@ public class StoreService {
 			file.setFileCodes(data.getFileCodes());
 			file.setExtensions(data.getExtensions());
 			file.setCreatedBy(principalService.getPrinciple().getId());
+			file.setUpdatedBy(principalService.getPrinciple().getId());
 			file = fileDao.insert(file);
 			storeUpdate.setFile(file);
 

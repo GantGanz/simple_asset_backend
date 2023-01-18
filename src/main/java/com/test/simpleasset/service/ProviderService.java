@@ -76,11 +76,13 @@ public class ProviderService {
 		provider.setProviderCode(data.getProviderCode());
 		provider.setProviderName(data.getProviderName());
 		provider.setCreatedBy(principalService.getPrinciple().getId());
+		provider.setUpdatedBy(principalService.getPrinciple().getId());
 
 		File file = new File();
 		file.setFileCodes(data.getFileCodes());
 		file.setExtensions(data.getExtensions());
 		file.setCreatedBy(principalService.getPrinciple().getId());
+		file.setUpdatedBy(principalService.getPrinciple().getId());
 		file = fileDao.insert(file);
 		provider.setFile(file);
 
@@ -130,6 +132,7 @@ public class ProviderService {
 			file.setFileCodes(data.getFileCodes());
 			file.setExtensions(data.getExtensions());
 			file.setCreatedBy(principalService.getPrinciple().getId());
+			file.setUpdatedBy(principalService.getPrinciple().getId());
 			file = fileDao.insert(file);
 			providerUpdate.setFile(file);
 

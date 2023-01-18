@@ -72,7 +72,8 @@ public class AssetService {
 			asset.setExpiredDate(data.getExpiredDate());
 		}
 		asset.setCreatedBy(principalService.getPrinciple().getId());
-
+		asset.setUpdatedBy(principalService.getPrinciple().getId());
+		
 		final AssetStatus assetStatus = assetStatusDao.getById(data.getAssetStatusId()).get();
 		asset.setAssetStatus(assetStatus);
 		final AssetType assetType = assetTypeDao.getById(data.getAssetTypeId()).get();
@@ -86,6 +87,7 @@ public class AssetService {
 		file.setFileCodes(data.getFileCodes());
 		file.setExtensions(data.getExtensions());
 		file.setCreatedBy(principalService.getPrinciple().getId());
+		file.setUpdatedBy(principalService.getPrinciple().getId());
 		file = fileDao.insert(file);
 		asset.setFile(file);
 
@@ -137,6 +139,7 @@ public class AssetService {
 			file.setFileCodes(data.getFileCodes());
 			file.setExtensions(data.getExtensions());
 			file.setCreatedBy(principalService.getPrinciple().getId());
+			file.setUpdatedBy(principalService.getPrinciple().getId());
 			file = fileDao.insert(file);
 			assetUpdate.setFile(file);
 

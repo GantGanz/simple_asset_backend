@@ -70,11 +70,13 @@ public class CompanyService {
 		company.setCompanyCode(data.getCompanyCode());
 		company.setCompanyName(data.getCompanyName());
 		company.setCreatedBy(principalService.getPrinciple().getId());
+		company.setUpdatedBy(principalService.getPrinciple().getId());
 
 		File file = new File();
 		file.setFileCodes(data.getFileCodes());
 		file.setExtensions(data.getExtensions());
 		file.setCreatedBy(principalService.getPrinciple().getId());
+		file.setUpdatedBy(principalService.getPrinciple().getId());
 		file = fileDao.insert(file);
 		company.setFile(file);
 
@@ -118,6 +120,7 @@ public class CompanyService {
 			file.setFileCodes(data.getFileCodes());
 			file.setExtensions(data.getExtensions());
 			file.setCreatedBy(principalService.getPrinciple().getId());
+			file.setUpdatedBy(principalService.getPrinciple().getId());
 			file = fileDao.insert(file);
 			companyUpdate.setFile(file);
 

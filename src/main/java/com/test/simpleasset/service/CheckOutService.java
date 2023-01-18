@@ -110,6 +110,7 @@ public class CheckOutService{
 			checkOutInsert.setCheckOutLocation(checkOut.getCheckOutLocation());
 		}
 		checkOutInsert.setCreatedBy(principalService.getPrinciple().getId());
+		checkOutInsert.setUpdatedBy(principalService.getPrinciple().getId());
 		final String rngValue = RandomNumberGeneratorUtil
 				.givenUsingJava8_whenGeneratingRandomAlphanumericString_thenCorrect();
 		checkOutInsert.setTrxCode(rngValue);
@@ -128,6 +129,7 @@ public class CheckOutService{
 			checkOutDetail.setCheckOut(checkOutInsert);
 			checkOutDetail.setReturnDate(checkOutDetailInsert.getReturnDate());
 			checkOutDetail.setCreatedBy(principalService.getPrinciple().getId());
+			checkOutDetail.setUpdatedBy(principalService.getPrinciple().getId());
 			checkOutDetailDao.insert(checkOutDetail);
 		}
 		checkOutInsertDataResDto.setId(checkOutInsert.getId());

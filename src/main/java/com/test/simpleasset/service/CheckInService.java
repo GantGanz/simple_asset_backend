@@ -97,6 +97,7 @@ public class CheckInService {
 		checkInInsert.setCheckOut(checkOut);
 		if (!checkInDaoOptional.isPresent()) {
 			checkInInsert.setCreatedBy(principalService.getPrinciple().getId());
+			checkInInsert.setUpdatedBy(principalService.getPrinciple().getId());
 			checkInInsert = checkInDao.insert(checkInInsert);
 		} else {
 			final CheckIn checkInUpdate = checkInDao.getById(checkInDaoOptional.get().getId()).get();
@@ -119,6 +120,7 @@ public class CheckInService {
 			checkInDetail.setCheckOutDetail(checkOutDetail);
 			checkInDetail.setCheckIn(checkInInsert);
 			checkInDetail.setCreatedBy(principalService.getPrinciple().getId());
+			checkInDetail.setUpdatedBy(principalService.getPrinciple().getId());
 
 			final Long assetId = checkOutDetail.getAsset().getId();
 			final Asset asset = assetDao.getById(assetId).get();

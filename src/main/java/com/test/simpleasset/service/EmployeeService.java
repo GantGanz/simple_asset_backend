@@ -65,6 +65,7 @@ public class EmployeeService {
 		employee.setEmployeeCode(data.getEmployeeCode());
 		employee.setEmployeeName(data.getEmployeeName());
 		employee.setCreatedBy(principalService.getPrinciple().getId());
+		employee.setUpdatedBy(principalService.getPrinciple().getId());
 		final Employee employeeInsert = employeeDao.insert(employee);
 		employeeInsertDataResDto.setId(employeeInsert.getId());
 		employeeInsertResDto.setData(employeeInsertDataResDto);
