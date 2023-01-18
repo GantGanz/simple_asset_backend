@@ -19,7 +19,7 @@ About the Simple Asset Management System app :
 - The assets has their own 'type' and 'status' that might change on each transaction. 
 - The assets can be assigned to a place, employee (which must be registered first), and to a general type asset (must be assigned with a component type asset. ex: a RAM (component) can be assigned to a Laptop (general)). 
 - An asset might have an expired date, and a 'check out' might have a specified return date. 
-- An email would be sent to the new user when you create an account or to the super admin when you create an asset. 
+- An email would be sent to the new user when you create an account or to the super admin when you create an asset. (go test it by creating user with your own email)
 
 How to use the app :
 
