@@ -1,8 +1,10 @@
 package com.test.simpleasset.service;
 
 import java.util.ArrayList;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Stream;
 
 import javax.transaction.Transactional;
 
@@ -175,8 +177,15 @@ public class AssetService {
 
 	public AssetsDto getAll() {
 		final List<Asset> assets = assetDao.getAll();
+		final Comparator<Asset> compareByNameThenSerial = Comparator
+                .comparing(Asset::getAssetName)
+                .thenComparing(Asset::getSerialNumber);
+
+		final Stream<Asset> sortedAssets = assets.stream()
+            .sorted(compareByNameThenSerial);
+
 		final List<AssetDataDto> dataDtos = new ArrayList<>();
-		assets.stream().forEach(asset -> {
+		sortedAssets.forEach(asset -> {
 			final AssetDataDto assetDataDto = new AssetDataDto();
 			assetDataDto.setAssetName(asset.getAssetName());
 			assetDataDto.setAssetTypeName(asset.getAssetType().getAssetTypeName());
