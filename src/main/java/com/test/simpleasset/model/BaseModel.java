@@ -11,7 +11,12 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Version;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 @MappedSuperclass
+@Data
+@EqualsAndHashCode(callSuper = false)
 public abstract class BaseModel {
 	
 	@Id
@@ -46,48 +51,5 @@ public abstract class BaseModel {
 	@PreUpdate
 	public void preUpdate() {
 		this.updatedAt = LocalDateTime.now();
-	}
-	
-	public Long getId() {
-		return id;
-	}
-	public void setId(Long id) {
-		this.id = id;
-	}
-	public Long getCreatedBy() {
-		return createdBy;
-	}
-	public void setCreatedBy(Long createdBy) {
-		this.createdBy = createdBy;
-	}
-	public LocalDateTime getCreatedAt() {
-		return createdAt;
-	}
-	public void setCreatedAt(LocalDateTime createdAt) {
-		this.createdAt = createdAt;
-	}
-	public Long getUpdatedBy() {
-		return updatedBy;
-	}
-	public void setUpdatedBy(Long updatedBy) {
-		this.updatedBy = updatedBy;
-	}
-	public LocalDateTime getUpdatedAt() {
-		return updatedAt;
-	}
-	public void setUpdatedAt(LocalDateTime updatedAt) {
-		this.updatedAt = updatedAt;
-	}
-	public Integer getVersion() {
-		return version;
-	}
-	public void setVersion(Integer version) {
-		this.version = version;
-	}
-	public Boolean getIsActive() {
-		return isActive;
-	}
-	public void setIsActive(Boolean isActive) {
-		this.isActive = isActive;
 	}
 }

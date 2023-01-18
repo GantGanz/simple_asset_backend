@@ -5,6 +5,9 @@ import javax.persistence.Entity;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 @Entity
 @Table(name = "user_role", uniqueConstraints = 
 	@UniqueConstraint(
@@ -12,6 +15,8 @@ import javax.persistence.UniqueConstraint;
 		columnNames = {"role_name", "role_code"}
 	)
 )
+@Data
+@EqualsAndHashCode(callSuper = false)
 public class Role extends BaseModel{
 
 	@Column(name = "role_code", nullable = false, length=5, unique=true)
@@ -19,21 +24,4 @@ public class Role extends BaseModel{
 	
 	@Column(name = "role_name", nullable = false, length=5)
 	private String roleName;
-
-	public String getRoleCode() {
-		return roleCode;
-	}
-
-	public void setRoleCode(String roleCode) {
-		this.roleCode = roleCode;
-	}
-
-	public String getRoleName() {
-		return roleName;
-	}
-
-	public void setRoleName(String roleName) {
-		this.roleName = roleName;
-	}
-
 }

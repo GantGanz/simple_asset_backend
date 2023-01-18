@@ -7,10 +7,15 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 @Entity
 @Table(name = "provider", 
 uniqueConstraints = @UniqueConstraint(name = "provider_name_code_ck", columnNames = { "provider_name",
 "provider_code" }))
+@Data
+@EqualsAndHashCode(callSuper = false)
 public class Provider extends BaseModel{
 
 	@Column(name = "provider_name", nullable = false, length=50)
@@ -26,30 +31,4 @@ public class Provider extends BaseModel{
 	@ManyToOne
 	@JoinColumn(name = "store_id")
 	private Store store;
-	
-	public String getProviderName() {
-		return providerName;
-	}
-	public void setProviderName(String providerName) {
-		this.providerName = providerName;
-	}
-	public String getProviderCode() {
-		return providerCode;
-	}
-	public void setProviderCode(String providerCode) {
-		this.providerCode = providerCode;
-	}
-	public File getFile() {
-		return file;
-	}
-	public void setFile(File file) {
-		this.file = file;
-	}
-	public Store getStore() {
-		return store;
-	}
-	public void setStore(Store store) {
-		this.store = store;
-	}
-	
 }

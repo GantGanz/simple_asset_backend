@@ -7,9 +7,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 @Entity
 @Table(name = "users", uniqueConstraints = @UniqueConstraint(name = "fullname_email_ck", columnNames = { "fullname",
 		"email" }))
+@Data
+@EqualsAndHashCode(callSuper = false)
 public class User extends BaseModel {
 
 	@Column(name = "fullname", nullable = false, length = 50)
@@ -28,45 +33,4 @@ public class User extends BaseModel {
 	@ManyToOne
 	@JoinColumn(name = "file_id", nullable = false, unique = true)
 	private File file;
-
-	public String getFullname() {
-		return fullname;
-	}
-
-	public void setFullname(String fullname) {
-		this.fullname = fullname;
-	}
-
-	public String getEmail() {
-		return email;
-	}
-
-	public void setEmail(String email) {
-		this.email = email;
-	}
-
-	public String getPass() {
-		return pass;
-	}
-
-	public void setPass(String pass) {
-		this.pass = pass;
-	}
-
-	public Role getRole() {
-		return role;
-	}
-
-	public void setRole(Role role) {
-		this.role = role;
-	}
-
-	public File getFile() {
-		return file;
-	}
-
-	public void setFile(File file) {
-		this.file = file;
-	}
-
 }

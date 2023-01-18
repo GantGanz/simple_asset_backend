@@ -9,8 +9,13 @@ import javax.persistence.ManyToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 @Entity
 @Table(name = "check_out")
+@Data
+@EqualsAndHashCode(callSuper = false)
 public class CheckOut extends BaseModel{
 
 	@Column(name = "trxCode", unique = true, nullable = false, length=5)
@@ -36,37 +41,4 @@ public class CheckOut extends BaseModel{
 		setCreatedAt(LocalDateTime.now());
 		setIsActive(true);
 	}
-	
-	public String getCheckOutLocation() {
-		return checkOutLocation;
-	}
-	public void setCheckOutLocation(String checkOutLocation) {
-		this.checkOutLocation = checkOutLocation;
-	}
-	
-	public Asset getAssetGeneral() {
-		return assetGeneral;
-	}
-	public void setAssetGeneral(Asset assetGeneral) {
-		this.assetGeneral = assetGeneral;
-	}
-	public Employee getEmployee() {
-		return employee;
-	}
-	public void setEmployee(Employee employee) {
-		this.employee = employee;
-	}
-	public LocalDateTime getTimeCheckOut() {
-		return timeCheckOut;
-	}
-	public void setTimeCheckOut(LocalDateTime timeCheckOut) {
-		this.timeCheckOut = timeCheckOut;
-	}
-	public String getTrxCode() {
-		return trxCode;
-	}
-	public void setTrxCode(String trxCode) {
-		this.trxCode = trxCode;
-	}
-	
 }

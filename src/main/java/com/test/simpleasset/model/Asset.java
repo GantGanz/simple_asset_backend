@@ -9,9 +9,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 import javax.persistence.UniqueConstraint;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 @Entity
 @Table(name = "asset", uniqueConstraints = @UniqueConstraint(name = "asset_name_serial_number_ck", columnNames = {
 		"asset_name", "serial_number" }))
+@Data
+@EqualsAndHashCode(callSuper = false)
 public class Asset extends BaseModel {
 
 	@Column(name = "asset_name", nullable = false, length = 50)
@@ -45,77 +50,4 @@ public class Asset extends BaseModel {
 	@ManyToOne
 	@JoinColumn(name = "provider_id", nullable = false)
 	private Provider provider;
-
-	public String getAssetName() {
-		return assetName;
-	}
-
-	public void setAssetName(String assetName) {
-		this.assetName = assetName;
-	}
-
-	public String getInvoiceNumber() {
-		return invoiceNumber;
-	}
-
-	public void setInvoiceNumber(String invoiceNumber) {
-		this.invoiceNumber = invoiceNumber;
-	}
-
-	public String getSerialNumber() {
-		return serialNumber;
-	}
-
-	public void setSerialNumber(String serialNumber) {
-		this.serialNumber = serialNumber;
-	}
-
-	public File getFile() {
-		return file;
-	}
-
-	public void setFile(File file) {
-		this.file = file;
-	}
-
-	public Company getCompany() {
-		return company;
-	}
-
-	public void setCompany(Company company) {
-		this.company = company;
-	}
-
-	public AssetStatus getAssetStatus() {
-		return assetStatus;
-	}
-
-	public void setAssetStatus(AssetStatus assetStatus) {
-		this.assetStatus = assetStatus;
-	}
-
-	public AssetType getAssetType() {
-		return assetType;
-	}
-
-	public void setAssetType(AssetType assetType) {
-		this.assetType = assetType;
-	}
-
-	public Provider getProvider() {
-		return provider;
-	}
-
-	public void setProvider(Provider provider) {
-		this.provider = provider;
-	}
-
-	public LocalDate getExpiredDate() {
-		return expiredDate;
-	}
-
-	public void setExpiredDate(LocalDate expiredDate) {
-		this.expiredDate = expiredDate;
-	}
-
 }

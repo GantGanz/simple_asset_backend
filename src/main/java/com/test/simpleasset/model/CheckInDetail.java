@@ -10,8 +10,13 @@ import javax.persistence.OneToOne;
 import javax.persistence.PrePersist;
 import javax.persistence.Table;
 
+import lombok.Data;
+import lombok.EqualsAndHashCode;
+
 @Entity
 @Table(name = "check_in_detail")
+@Data
+@EqualsAndHashCode(callSuper = false)
 public class CheckInDetail extends BaseModel{
 
 	@Column(name = "check_in_time", nullable = false)
@@ -35,30 +40,4 @@ public class CheckInDetail extends BaseModel{
 		setCreatedAt(LocalDateTime.now());
 		setIsActive(true);
 	}
-	
-	public CheckOutDetail getCheckOutDetail() {
-		return checkOutDetail;
-	}
-	public void setCheckOutDetail(CheckOutDetail checkOutDetail) {
-		this.checkOutDetail = checkOutDetail;
-	}
-	public AssetStatus getAssetStatus() {
-		return assetStatus;
-	}
-	public void setAssetStatus(AssetStatus assetStatus) {
-		this.assetStatus = assetStatus;
-	}
-	public CheckIn getCheckIn() {
-		return checkIn;
-	}
-	public void setCheckIn(CheckIn checkIn) {
-		this.checkIn = checkIn;
-	}
-	public LocalDateTime getCheckInTime() {
-		return checkInTime;
-	}
-	public void setCheckInTime(LocalDateTime checkInTime) {
-		this.checkInTime = checkInTime;
-	}
-	
 }
