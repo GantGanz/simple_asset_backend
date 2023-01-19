@@ -2,6 +2,7 @@
 
 How to run :
 - Create postgresql database named "simple_asset_management_system".
+- Make sure the database settings at application.properties are correct.
 - Run asset.sql (https://github.com/GantGanz/simple_asset_backend/blob/main/asset.sql).
 - Run SimpleassetApplication.
 - Open http://localhost:8080/swagger-ui/index.html#/login-controller/login in a browser.
@@ -12,7 +13,6 @@ How to run :
   + username: member@gmail.com
   + password: member
 - Front end : https://github.com/GantGanz/simple_asset_frontend.
-
 
 About the Simple Asset Management System app :
 - This is an app for managing and tracking companies assets.
