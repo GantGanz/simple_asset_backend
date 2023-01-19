@@ -38,15 +38,38 @@ public class CompanyService {
 
 	public CompaniesDto getAll() {
 		final List<Company> companies = companyDao.getAll();
-		
-		final Comparator<Company> compareByNameThenCode = Comparator
-                .comparing(Company::getCompanyName)
-                .thenComparing(Company::getCompanyCode);
-		final Stream<Company> sortedCompanies = companies.stream()
-            .sorted(compareByNameThenCode);
+
+		final Comparator<Company> compareByNameThenCode = Comparator.comparing(Company::getCompanyName)
+				.thenComparing(Company::getCompanyCode);
+		final Stream<Company> sortedCompanies = companies.stream().sorted(compareByNameThenCode);
 
 		final List<CompanyDataDto> dataDtos = new ArrayList<>();
-		sortedCompanies.forEach(company -> {	
+		sortedCompanies.forEach(company -> {
+			final CompanyDataDto companyDataDto = new CompanyDataDto();
+			companyDataDto.setCompanyCode(company.getCompanyCode());
+			companyDataDto.setCompanyName(company.getCompanyName());
+			companyDataDto.setFileId(company.getFile().getId());
+			companyDataDto.setCompanyId(company.getId());
+			companyDataDto.setVersion(company.getVersion());
+			companyDataDto.setIsActive(company.getIsActive());
+			dataDtos.add(companyDataDto);
+		});
+		final CompaniesDto companiesDto = new CompaniesDto();
+		companiesDto.setData(dataDtos);
+
+		return companiesDto;
+	}
+
+	public CompaniesDto findByName(final String name) {
+		final List<Company> companies = companyDao.getAll();
+
+		final Comparator<Company> compareByNameThenCode = Comparator.comparing(Company::getCompanyName)
+				.thenComparing(Company::getCompanyCode);
+		final Stream<Company> sortedCompanies = companies.stream().sorted(compareByNameThenCode)
+				.filter(company -> company.getCompanyName().toLowerCase().contains(name.toLowerCase()));
+
+		final List<CompanyDataDto> dataDtos = new ArrayList<>();
+		sortedCompanies.forEach(company -> {
 			final CompanyDataDto companyDataDto = new CompanyDataDto();
 			companyDataDto.setCompanyCode(company.getCompanyCode());
 			companyDataDto.setCompanyName(company.getCompanyName());

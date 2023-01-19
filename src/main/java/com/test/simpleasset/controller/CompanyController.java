@@ -39,6 +39,12 @@ public class CompanyController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@GetMapping("name/{name}")
+	public ResponseEntity<CompaniesDto> findByName(@PathVariable("name") final String name) {
+		final CompaniesDto result = companyService.findByName(name);
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+	
 	@PostMapping
 	@PreAuthorize("hasAuthority('SA')")
 	public ResponseEntity<CompanyInsertResDto> insert(@RequestBody @Valid final CompanyInsertReqDto data){
