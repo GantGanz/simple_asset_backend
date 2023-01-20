@@ -40,6 +40,12 @@ public class EmployeeController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@GetMapping("name/{name}")
+	public ResponseEntity<EmployeesDto> findByName(@PathVariable("name") final String name) {
+		final EmployeesDto result = employeeService.findByName(name);
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+	
 	@Operation(summary = "[Super Admin only]")
 	@PostMapping
 	@PreAuthorize("hasAuthority('SA')")

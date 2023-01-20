@@ -61,6 +61,32 @@ public class StoreService {
 
 		return storesDto;
 	}
+	
+	public StoresDto findByName(final String name) {
+		final List<Store> stores = storeDao.getAll();
+		
+		final Comparator<Store> compareByNameThenCode = Comparator
+                .comparing(Store::getStoreName)
+                .thenComparing(Store::getStoreCode);
+		final Stream<Store> sortedStores = stores.stream()
+            .sorted(compareByNameThenCode).filter(store -> store.getStoreName().toLowerCase().contains(name.toLowerCase()));
+		
+		final List<StoreDataDto> dataDtos = new ArrayList<>();
+		sortedStores.forEach(store -> {	
+			final StoreDataDto storeDataDto = new StoreDataDto();
+			storeDataDto.setStoreCode(store.getStoreCode());
+			storeDataDto.setStoreName(store.getStoreName());
+			storeDataDto.setFileId(store.getFile().getId());
+			storeDataDto.setStoreId(store.getId());
+			storeDataDto.setVersion(store.getVersion());
+			storeDataDto.setIsActive(store.getIsActive());
+			dataDtos.add(storeDataDto);
+		});
+		final StoresDto storesDto = new StoresDto();
+		storesDto.setData(dataDtos);
+
+		return storesDto;
+	}
 
 	@Transactional(rollbackOn = Exception.class)
 	public StoreInsertResDto insert(final StoreInsertReqDto data) {

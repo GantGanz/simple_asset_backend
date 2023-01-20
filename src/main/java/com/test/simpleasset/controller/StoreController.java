@@ -40,6 +40,12 @@ public class StoreController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@GetMapping("name/{name}")
+	public ResponseEntity<StoresDto> findByName(@PathVariable("name") final String name) {
+		final StoresDto result = storeService.findByName(name);
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+	
 	@Operation(summary = "[Super Admin only]")
 	@PostMapping
 	@PreAuthorize("hasAuthority('SA')")

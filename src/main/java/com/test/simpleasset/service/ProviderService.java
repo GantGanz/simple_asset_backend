@@ -67,6 +67,34 @@ public class ProviderService {
 
 		return providersDto;
 	}
+	
+	public ProvidersDto findByName(final String name) {
+		final List<Provider> providers = providerDao.getAll();
+		
+		final Comparator<Provider> compareByNameThenCode = Comparator
+                .comparing(Provider::getProviderName)
+                .thenComparing(Provider::getProviderCode);
+		final Stream<Provider> sortedProviders = providers.stream()
+            .sorted(compareByNameThenCode).filter(provider -> provider.getProviderName().toLowerCase().contains(name.toLowerCase()));
+		
+		final List<ProviderDataDto> dataDtos = new ArrayList<>();
+		sortedProviders.forEach(provider -> {
+			final ProviderDataDto providerDataDto = new ProviderDataDto();
+			providerDataDto.setProviderCode(provider.getProviderCode());
+			providerDataDto.setProviderName(provider.getProviderName());
+			providerDataDto.setStoreName(provider.getStore().getStoreName());
+			providerDataDto.setFileId(provider.getFile().getId());
+			providerDataDto.setProviderId(provider.getId());
+			providerDataDto.setVersion(provider.getVersion());
+			providerDataDto.setIsActive(provider.getIsActive());
+			dataDtos.add(providerDataDto);
+		});
+
+		final ProvidersDto providersDto = new ProvidersDto();
+		providersDto.setData(dataDtos);
+
+		return providersDto;
+	}
 
 	@Transactional(rollbackOn = Exception.class)
 	public ProviderInsertResDto insert(final ProviderInsertReqDto data) {

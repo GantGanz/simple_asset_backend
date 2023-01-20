@@ -56,6 +56,31 @@ public class EmployeeService {
 
 		return employeesDto;
 	}
+	
+	public EmployeesDto findByName(final String name) {
+		final List<Employee> employees = employeeDao.getAll();
+		
+		final Comparator<Employee> compareByNameThenCode = Comparator
+                .comparing(Employee::getEmployeeName)
+                .thenComparing(Employee::getEmployeeCode);
+		final Stream<Employee> sortedEmployees = employees.stream()
+            .sorted(compareByNameThenCode).filter(employee -> employee.getEmployeeName().toLowerCase().contains(name.toLowerCase()));
+		
+		final List<EmployeeDataDto> dataDtos = new ArrayList<>();
+		sortedEmployees.forEach(employee -> {	
+			final EmployeeDataDto employeeDataDto = new EmployeeDataDto();
+			employeeDataDto.setEmployeeCode(employee.getEmployeeCode());
+			employeeDataDto.setEmployeeName(employee.getEmployeeName());
+			employeeDataDto.setEmployeeId(employee.getId());
+			employeeDataDto.setVersion(employee.getVersion());
+			employeeDataDto.setIsActive(employee.getIsActive());
+			dataDtos.add(employeeDataDto);
+		});
+		final EmployeesDto employeesDto = new EmployeesDto();
+		employeesDto.setData(dataDtos);
+
+		return employeesDto;
+	}
 
 	@Transactional(rollbackOn = Exception.class)
 	public EmployeeInsertResDto insert(final EmployeeInsertReqDto data) {

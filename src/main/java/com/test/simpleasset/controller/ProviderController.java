@@ -40,6 +40,12 @@ public class ProviderController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@GetMapping("name/{name}")
+	public ResponseEntity<ProvidersDto> findByName(@PathVariable("name") final String name) {
+		final ProvidersDto result = providerService.findByName(name);
+		return new ResponseEntity<>(result, HttpStatus.OK);
+	}
+	
 	@Operation(summary = "[Super Admin only]")
 	@PostMapping
 	@PreAuthorize("hasAuthority('SA')")
