@@ -24,6 +24,7 @@ import com.test.simpleasset.dto.company.CompanyUpdateReqDto;
 import com.test.simpleasset.dto.company.CompanyUpdateResDto;
 import com.test.simpleasset.service.CompanyService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @SecurityRequirement(name = "bearerAuth")
@@ -45,6 +46,7 @@ public class CompanyController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@Operation(summary = "[Super Admin only]")
 	@PostMapping
 	@PreAuthorize("hasAuthority('SA')")
 	public ResponseEntity<CompanyInsertResDto> insert(@RequestBody @Valid final CompanyInsertReqDto data){
@@ -58,6 +60,7 @@ public class CompanyController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@Operation(summary = "[Super Admin only]")
 	@DeleteMapping("{id}")
 	@PreAuthorize("hasAuthority('SA')")
 	public ResponseEntity<CompanyDeleteResDto> delete(@PathVariable("id") final Long id) {
@@ -65,6 +68,7 @@ public class CompanyController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@Operation(summary = "[Super Admin only]")
 	@PutMapping
 	@PreAuthorize("hasAuthority('SA')")
 	public ResponseEntity<CompanyUpdateResDto> update(@RequestBody @Valid final CompanyUpdateReqDto data) {

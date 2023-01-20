@@ -24,6 +24,7 @@ import com.test.simpleasset.dto.store.StoreUpdateResDto;
 import com.test.simpleasset.dto.store.StoresDto;
 import com.test.simpleasset.service.StoreService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @SecurityRequirement(name = "bearerAuth")
@@ -39,6 +40,7 @@ public class StoreController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@Operation(summary = "[Super Admin only]")
 	@PostMapping
 	@PreAuthorize("hasAuthority('SA')")
 	public ResponseEntity<StoreInsertResDto> insert(@RequestBody @Valid final StoreInsertReqDto data){
@@ -52,6 +54,7 @@ public class StoreController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@Operation(summary = "[Super Admin only]")
 	@DeleteMapping("{id}")
 	@PreAuthorize("hasAuthority('SA')")
 	public ResponseEntity<StoreDeleteResDto> delete(@PathVariable("id") final Long id) {
@@ -59,6 +62,7 @@ public class StoreController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@Operation(summary = "[Super Admin only]")
 	@PutMapping
 	@PreAuthorize("hasAuthority('SA')")
 	public ResponseEntity<StoreUpdateResDto> update(@RequestBody @Valid final StoreUpdateReqDto data) {

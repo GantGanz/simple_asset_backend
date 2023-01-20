@@ -41,7 +41,8 @@ public class LoginController {
 	private JwtService jwtService;
 
 	@Operation(summary = "You must have the correct user role to access the APIs", 
-			description = "Login admin: (username: admin@gmail.com, password: admin). Login member: (username: member@gmail.com, password: member)")
+			description = "Login Super Admin: (username: admin@gmail.com, password: admin). \n\n"
+					+ "Login Member: (username: member@gmail.com, password: member)")
 	@PostMapping
 	public ResponseEntity<LoginResDto> login(@RequestBody @Valid final LoginReqDto data) {
 		final Authentication authentication = new UsernamePasswordAuthenticationToken(data.getEmail(),

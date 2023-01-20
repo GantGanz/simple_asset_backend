@@ -24,6 +24,7 @@ import com.test.simpleasset.dto.employee.EmployeeUpdateResDto;
 import com.test.simpleasset.dto.employee.EmployeesDto;
 import com.test.simpleasset.service.EmployeeService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @SecurityRequirement(name = "bearerAuth")
@@ -39,6 +40,7 @@ public class EmployeeController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@Operation(summary = "[Super Admin only]")
 	@PostMapping
 	@PreAuthorize("hasAuthority('SA')")
 	public ResponseEntity<EmployeeInsertResDto> insert(@RequestBody @Valid final EmployeeInsertReqDto data){
@@ -52,6 +54,7 @@ public class EmployeeController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@Operation(summary = "[Super Admin only]")
 	@DeleteMapping("{id}")
 	@PreAuthorize("hasAuthority('SA')")
 	public ResponseEntity<EmployeeDeleteResDto> delete(@PathVariable("id") final Long id) {
@@ -59,6 +62,7 @@ public class EmployeeController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@Operation(summary = "[Super Admin only]")
 	@PutMapping
 	@PreAuthorize("hasAuthority('SA')")
 	public ResponseEntity<EmployeeUpdateResDto> update(@RequestBody @Valid final EmployeeUpdateReqDto data) {

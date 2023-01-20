@@ -20,6 +20,7 @@ import com.test.simpleasset.dto.checkindetail.CheckInDetailsDto;
 import com.test.simpleasset.service.CheckInDetailService;
 import com.test.simpleasset.service.CheckInService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @SecurityRequirement(name = "bearerAuth")
@@ -30,25 +31,28 @@ public class CheckInController {
 	private CheckInService checkInService;
 	@Autowired
 	private CheckInDetailService checkInDetailService;
-	
+
+	@Operation(summary = "[Member only]")
 	@GetMapping
 	@PreAuthorize("hasAuthority('NA')")
 	public ResponseEntity<CheckInsDto> getAllCheckIn() {
 		final CheckInsDto result = checkInService.getAll();
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
-	
+
+	@Operation(summary = "[Member only]", description = "Get all check in details based on check in id")
 	@GetMapping("all-by-id/{id}")
 	@PreAuthorize("hasAuthority('NA')")
 	public ResponseEntity<CheckInDetailsDto> getAllCheckedIn(@PathVariable("id") final Long id) {
 		final CheckInDetailsDto result = checkInDetailService.getAllCheckedIn(id);
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
-	
+
 	@PostMapping
+	@Operation(summary = "[Member only]")
 	@PreAuthorize("hasAuthority('NA')")
-	public ResponseEntity<CheckInInsertResDto> insert(@RequestBody @Valid final CheckInInsertReqDto data){
-		final CheckInInsertResDto insert = checkInService.insertCheckInDetails(data); 
+	public ResponseEntity<CheckInInsertResDto> insert(@RequestBody @Valid final CheckInInsertReqDto data) {
+		final CheckInInsertResDto insert = checkInService.insertCheckInDetails(data);
 		return new ResponseEntity<>(insert, HttpStatus.CREATED);
 	}
 }

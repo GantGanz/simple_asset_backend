@@ -27,6 +27,7 @@ import com.test.simpleasset.dto.user.UserUpdateResDto;
 import com.test.simpleasset.dto.user.UsersDto;
 import com.test.simpleasset.service.UserService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @SecurityRequirement(name = "bearerAuth")
@@ -36,6 +37,7 @@ public class UserController {
 	@Autowired
 	private UserService userService;
 
+	@Operation(summary = "[Super Admin only]")
 	@GetMapping
 	@PreAuthorize("hasAuthority('SA')")
 	public ResponseEntity<UsersDto> getAllUser() {
@@ -43,6 +45,7 @@ public class UserController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@Operation(summary = "[Super Admin only]")
 	@GetMapping("fullname/{name}")
 	@PreAuthorize("hasAuthority('SA')")
 	public ResponseEntity<UsersDto> findByFullname(@PathVariable("name") final String name)  {
@@ -50,6 +53,7 @@ public class UserController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@Operation(summary = "[Super Admin only]")
 	@GetMapping("email/{email}")
 	@PreAuthorize("hasAuthority('SA')")
 	public ResponseEntity<UsersDto> findByEmail(@PathVariable("email") final String email)  {
@@ -57,6 +61,8 @@ public class UserController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@Operation(summary = "[Super Admin only]", description = "Create a new Member account here. \n\n "
+			+ "The password would be sent to member's email.")
 //	Comment the Post PreAuthorize to create super admin for the first time. Then Uncomment back when it has been created
 	@PostMapping
 	@PreAuthorize("hasAuthority('SA')")
@@ -71,6 +77,7 @@ public class UserController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@Operation(summary = "[Super Admin only]")
 	@DeleteMapping("{id}")
 	@PreAuthorize("hasAuthority('SA')")
 	public ResponseEntity<UserDeleteResDto> delete(@PathVariable("id") final Long id) {

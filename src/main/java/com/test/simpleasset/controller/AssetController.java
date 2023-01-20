@@ -24,6 +24,7 @@ import com.test.simpleasset.dto.asset.AssetUpdateResDto;
 import com.test.simpleasset.dto.asset.AssetsDto;
 import com.test.simpleasset.service.AssetService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @SecurityRequirement(name = "bearerAuth")
@@ -39,6 +40,9 @@ public class AssetController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@Operation(summary = "[Super Admin only]", 
+			description = "You must atleast create a company and a provider first to add an asset. \n\n"
+					+ "Creating an asset would send an email to the Super Admin email.")
 	@PostMapping
 	@PreAuthorize("hasAuthority('SA')")
 	public ResponseEntity<AssetInsertResDto> insert(@RequestBody @Valid final AssetInsertReqDto data){
@@ -58,6 +62,7 @@ public class AssetController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@Operation(summary = "[Super Admin only]")
 	@DeleteMapping("{id}")
 	@PreAuthorize("hasAuthority('SA')")
 	public ResponseEntity<AssetDeleteResDto> delete(@PathVariable("id") final Long id) {
@@ -65,6 +70,7 @@ public class AssetController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@Operation(summary = "[Super Admin only]")
 	@PutMapping
 	@PreAuthorize("hasAuthority('SA')")
 	public ResponseEntity<AssetUpdateResDto> update(@RequestBody @Valid final AssetUpdateReqDto data) {

@@ -13,6 +13,7 @@ import com.test.simpleasset.dto.role.RoleDataResDto;
 import com.test.simpleasset.dto.role.RolesDto;
 import com.test.simpleasset.service.RoleService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @SecurityRequirement(name = "bearerAuth")
@@ -22,6 +23,7 @@ public class RoleController {
 	@Autowired
 	private RoleService roleService;
 
+	@Operation(summary = "[Super Admin only]")
 	@GetMapping
 	@PreAuthorize("hasAuthority('SA')")
 	public ResponseEntity<RolesDto> getAllrole() {
@@ -29,6 +31,7 @@ public class RoleController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@Operation(summary = "[Super Admin only]")
 	@GetMapping("{id}")
 	@PreAuthorize("hasAuthority('SA')")
 	public ResponseEntity<RoleDataResDto> getById(@PathVariable("id") final Long id) {

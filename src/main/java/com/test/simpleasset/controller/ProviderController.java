@@ -24,6 +24,7 @@ import com.test.simpleasset.dto.provider.ProviderUpdateResDto;
 import com.test.simpleasset.dto.provider.ProvidersDto;
 import com.test.simpleasset.service.ProviderService;
 
+import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.security.SecurityRequirement;
 
 @SecurityRequirement(name = "bearerAuth")
@@ -39,6 +40,7 @@ public class ProviderController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@Operation(summary = "[Super Admin only]")
 	@PostMapping
 	@PreAuthorize("hasAuthority('SA')")
 	public ResponseEntity<ProviderInsertResDto> insert(@RequestBody @Valid final ProviderInsertReqDto data){
@@ -52,6 +54,7 @@ public class ProviderController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@Operation(summary = "[Super Admin only]")
 	@DeleteMapping("{id}")
 	@PreAuthorize("hasAuthority('SA')")
 	public ResponseEntity<ProviderDeleteResDto> delete(@PathVariable("id") final Long id) {
@@ -59,6 +62,7 @@ public class ProviderController {
 		return new ResponseEntity<>(result, HttpStatus.OK);
 	}
 	
+	@Operation(summary = "[Super Admin only]")
 	@PutMapping
 	@PreAuthorize("hasAuthority('SA')")
 	public ResponseEntity<ProviderUpdateResDto> update(@RequestBody @Valid final ProviderUpdateReqDto data) {
